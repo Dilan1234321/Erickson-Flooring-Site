@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | Erickson Flooring Inc.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<style>
+/* VARIABLES & RESET */
+:root {
+    --primary: #1a1a1a;
+    --accent: #c5a059;
+    --light: #f4f4f4;
+    --text-dark: #333;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Lato', sans-serif; background-color: white; color: var(--text-dark); line-height: 1.7; }
+h1, h2, h3, h4 { font-family: 'Playfair Display', serif; font-weight: 700; color: var(--primary); }
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+/* NAV */
+header { background: var(--primary); padding: 20px 50px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+.logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: white; letter-spacing: 1px; }
+.logo span { color: var(--accent); }
+nav ul { display: flex; gap: 30px; }
+nav a { color: rgba(255,255,255,0.7); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+nav a:hover, nav a.active { color: var(--accent); }
+
+/* CONTACT GRID */
+.contact-section { padding: 80px 0; }
+.contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px; }
+
+.contact-info { background: #f9f9f9; padding: 50px; height: fit-content; }
+.contact-info h2 { font-size: 2rem; margin-bottom: 30px; }
+.info-item { margin-bottom: 30px; }
+.info-item h4 { font-size: 1.1rem; margin-bottom: 10px; color: var(--accent); }
+.info-item p { font-size: 1rem; color: #555; }
+.socials a { font-size: 1.5rem; margin-right: 15px; color: var(--primary); }
+.socials a:hover { color: var(--accent); }
+
+.contact-form-box { padding: 20px; }
+.form-group { margin-bottom: 25px; }
+.form-group label { display: block; font-weight: 700; margin-bottom: 10px; font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase; }
+input, select, textarea { width: 100%; padding: 15px; border: 1px solid #ddd; background: #fff; font-family: 'Lato', sans-serif; transition: 0.3s; }
+input:focus, select:focus, textarea:focus { border-color: var(--accent); outline: none; }
+button { width: 100%; padding: 18px; background: var(--primary); color: white; border: none; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: 0.3s; }
+button:hover { background: var(--accent); }
+
+/* MAP AREA */
+.service-area { text-align: center; padding: 60px 0; background: var(--primary); color: white; }
+.service-area h3 { color: white; margin-bottom: 20px; }
+.area-list span { margin: 0 15px; font-size: 1.1rem; opacity: 0.8; }
+
+@media (max-width: 768px) {
+    .contact-grid { grid-template-columns: 1fr; }
+    nav { display: none; }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <div class="logo">Erickson <span>Flooring</span></div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="our-story.html">Our Story</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="contact.html" class="active" style="border: 1px solid var(--accent); padding: 8px 15px;">Get Quote</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="contact-section">
+    <div class="container">
+        <div class="contact-grid">
+            
+            <div class="contact-info">
+                <h2>Let's Discuss Your Vision</h2>
+                <p style="margin-bottom: 40px; color: #666;">We limit our active projects to ensure quality. Please fill out the form to check availability for your timeline.</p>
+                
+                <div class="info-item">
+                    <h4>Direct Line</h4>
+                    <p>(813) 555-0199</p>
+                    <p>hello@ericksonflooring.com</p>
+                </div>
+                <div class="info-item">
+                    <h4>Studio & Workshop</h4>
+                    <p>123 Craftsman Way<br>Tampa, FL 33602<br><em>By Appointment Only</em></p>
+                </div>
+                <div class="socials">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="contact-form-box">
+                <form>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" placeholder="Your Name">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" placeholder="email@address.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="tel" placeholder="(813) ...">
+                    </div>
+                    <div class="form-group">
+                        <label>Project Type</label>
+                        <select>
+                            <option>New Hardwood Installation</option>
+                            <option>Refinishing / Restoration</option>
+                            <option>Luxury Vinyl / Laminate</option>
+                            <option>Tile & Stone</option>
+                            <option>Commercial Project</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Estimated Square Footage</label>
+                        <input type="text" placeholder="e.g. 1,500 sq ft">
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea rows="5" placeholder="Tell us about your project..."></textarea>
+                    </div>
+                    <button type="button">Request Consultation</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<div class="service-area">
+    <h3>Proudly Serving Tampa Bay</h3>
+    <div class="area-list">
+        <span>South Tampa</span> • 
+        <span>Davis Islands</span> • 
+        <span>St. Petersburg</span> • 
+        <span>Clearwater Beach</span> • 
+        <span>Wesley Chapel</span>
+    </div>
+</div>
+
+</body>
+</html>
