@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Story | Erickson Flooring Inc.</title>
+
+<!-- Fonts: Playfair Display + Lato -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<style>
+/* -------------------------------------------------------------------
+   VARIABLES & RESET (MATCHING MAIN SITE)
+------------------------------------------------------------------- */
+:root {
+    --primary: #1a1a1a;        /* Deep Charcoal */
+    --accent: #c5a059;         /* Muted Gold */
+    --light: #f4f4f4;          /* Off White */
+    --wood: #8b5a2b;           /* Warm Wood Tone */
+    --text-dark: #333;
+    --transition: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: white;
+    color: var(--text-dark);
+    line-height: 1.8;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--primary);
+}
+
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+.gold-text { color: var(--accent); }
+.text-center { text-align: center; }
+
+/* -------------------------------------------------------------------
+   NAVIGATION
+------------------------------------------------------------------- */
+header {
+    background: var(--primary);
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+.logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: white; letter-spacing: 1px; }
+.logo span { color: var(--accent); }
+nav ul { display: flex; gap: 30px; }
+nav a { color: rgba(255,255,255,0.7); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+nav a:hover, nav a.active { color: var(--accent); }
+
+/* -------------------------------------------------------------------
+   HERO / PORTRAIT
+------------------------------------------------------------------- */
+.story-hero {
+    position: relative;
+    height: 70vh;
+    background-color: #000;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.story-hero-bg {
+    position: absolute;
+    inset: 0;
+    /* Moody, black & white craftsman image */
+    background-image: url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=2070&auto=format&fit=crop'); 
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5;
+    filter: grayscale(100%);
+}
+
+.story-hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: white;
+    padding-bottom: 80px;
+    max-width: 800px;
+}
+.story-hero h1 { font-size: 4rem; margin-bottom: 10px; color: white; }
+.story-hero .subtitle { 
+    font-size: 1.1rem; 
+    letter-spacing: 3px; 
+    text-transform: uppercase; 
+    color: var(--accent);
+    display: block;
+    margin-bottom: 20px;
+}
+
+/* -------------------------------------------------------------------
+   THE JOURNEY (Chicago -> Tampa)
+------------------------------------------------------------------- */
+.journey-section { padding: 100px 0; background: #fff; }
+
+.journey-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.journey-text h2 { font-size: 2.5rem; margin-bottom: 30px; }
+.journey-text p { margin-bottom: 25px; color: #555; font-size: 1.05rem; }
+.drop-cap { float: left; font-size: 4rem; line-height: 0.8; padding-right: 15px; padding-top: 5px; color: var(--accent); font-family: 'Playfair Display', serif; }
+
+.journey-map {
+    position: relative;
+    height: 500px;
+    background: #f4f4f4;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-left: 3px solid var(--accent);
+}
+.location-marker { margin-bottom: 40px; position: relative; padding-left: 30px; }
+.location-marker::before {
+    content: "";
+    position: absolute;
+    left: -46px; /* Align with border */
+    top: 5px;
+    width: 15px; height: 15px;
+    background: var(--primary);
+    border: 3px solid white;
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px var(--accent);
+}
+.location-marker h3 { font-size: 1.5rem; margin-bottom: 5px; }
+.location-marker span { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; color: #888; display: block; margin-bottom: 10px; }
+
+/* -------------------------------------------------------------------
+   THE PHILOSOPHY
+------------------------------------------------------------------- */
+.philosophy-section {
+    background: var(--primary);
+    color: rgba(255,255,255,0.8);
+    padding: 100px 0;
+    text-align: center;
+}
+.philosophy-section h2 { color: white; font-size: 3rem; margin-bottom: 40px; }
+.philosophy-quote {
+    font-size: 1.8rem;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--accent);
+    max-width: 800px;
+    margin: 0 auto 40px;
+    line-height: 1.4;
+}
+.philosophy-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-top: 60px;
+}
+.phil-item i { font-size: 2rem; color: var(--accent); margin-bottom: 20px; }
+.phil-item h4 { color: white; margin-bottom: 15px; font-size: 1.2rem; }
+.phil-item p { font-size: 0.95rem; line-height: 1.6; }
+
+/* -------------------------------------------------------------------
+   MASTER DETAILS
+------------------------------------------------------------------- */
+.details-section { padding: 100px 0; background: #f9f9f9; }
+.detail-block {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    margin-bottom: 0;
+    background: white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+.detail-block img { width: 100%; height: 100%; object-fit: cover; min-height: 400px; }
+.detail-content { padding: 60px; display: flex; flex-direction: column; justify-content: center; }
+.detail-content h3 { font-size: 2rem; margin-bottom: 20px; }
+.detail-content ul { list-style: none; margin-top: 20px; }
+.detail-content li { margin-bottom: 15px; padding-left: 20px; position: relative; }
+.detail-content li::before { content: "•"; color: var(--accent); font-size: 1.5rem; position: absolute; left: 0; top: -5px; }
+
+/* Reverse layout for second block */
+.detail-block.reverse { grid-template-columns: 1.5fr 1fr; }
+.detail-block.reverse img { order: 2; }
+
+/* -------------------------------------------------------------------
+   SIGNATURE / FOOTER CTA
+------------------------------------------------------------------- */
+.signature-section {
+    padding: 80px 0;
+    text-align: center;
+    background: white;
+}
+.signature-img { height: 80px; margin: 30px auto; opacity: 0.8; }
+
+.cta-bar {
+    background: var(--accent);
+    padding: 60px;
+    text-align: center;
+    color: white;
+}
+.cta-bar h2 { color: white; font-size: 2.5rem; margin-bottom: 10px; }
+.btn-white {
+    display: inline-block;
+    padding: 15px 40px;
+    background: white;
+    color: var(--primary);
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-top: 30px;
+    border: 2px solid white;
+}
+.btn-white:hover { background: transparent; color: white; }
+
+/* -------------------------------------------------------------------
+   MOBILE
+------------------------------------------------------------------- */
+@media (max-width: 768px) {
+    .story-hero h1 { font-size: 2.5rem; }
+    .journey-grid, .philosophy-grid, .detail-block, .detail-block.reverse { grid-template-columns: 1fr !important; }
+    .detail-block.reverse img { order: -1; } /* Image always top on mobile */
+    .journey-map { height: auto; border-left: none; border-top: 3px solid var(--accent); padding-left: 0; padding-top: 40px; }
+    .location-marker::before { top: -49px; left: 0; }
+    .location-marker { padding-left: 0; padding-top: 20px; }
+}
+</style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Erickson <span>Flooring</span></div>
+        <nav>
+            <ul>
+                <li><a href="erickson_flooring.html">Home</a></li>
+                <li><a href="#" class="active">Our Story</a></li>
+                <li><a href="erickson_flooring.html#gallery">Portfolio</a></li>
+                <li><a href="erickson_flooring.html#contact" style="border: 1px solid var(--accent); padding: 8px 15px;">Get Quote</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="story-hero">
+        <div class="story-hero-bg"></div>
+        <div class="story-hero-content">
+            <span class="subtitle">The Craftsman</span>
+            <h1>Behind the Grain</h1>
+            <p style="font-size: 1.1rem; opacity: 0.8; max-width: 600px; margin: 0 auto;">A journey from the historic renovations of the Windy City to the luxury estates of Tampa Bay.</p>
+        </div>
+    </section>
+
+    <!-- The Journey -->
+    <section class="journey-section">
+        <div class="container">
+            <div class="journey-grid">
+                <div class="journey-text">
+                    <h2>Forged in Chicago.<br>Perfected in Tampa.</h2>
+                    <p><span class="drop-cap">T</span>here is no better classroom for a flooring craftsman than Chicago. Working on 100-year-old historic brownstones teaches you respect for the material. You learn that wood lives, breathes, and moves. You learn that a floor isn't just a surface—it's structural art.</p>
+                    <p>I spent my formative years restoring floors that had survived a century of brutal winters and humid summers. That environment doesn't forgive shortcuts. If you don't acclimate the wood properly, it warps. If you don't sand with precision, the old stain bleeds through.</p>
+                    <p>When I moved to Tampa, I brought that "Chicago Standard" with me. In a market often rushed by new construction timelines, Erickson Flooring stands apart by slowing down, obsessing over the subfloor, and delivering a product that will outlast the house itself.</p>
+                </div>
+                <div class="journey-map">
+                    <div class="location-marker">
+                        <span>2015 - 2021</span>
+                        <h3>Chicago, IL</h3>
+                        <p style="font-size: 0.9rem; color: #666;">Specialized in Historic Restoration & custom Parquet for Gold Coast estates. Mastered the art of dustless sanding and oil-based finishes.</p>
+                    </div>
+                    <div class="location-marker">
+                        <span>2022 - Present</span>
+                        <h3>Tampa, FL</h3>
+                        <p style="font-size: 0.9rem; color: #666;">Founded Erickson Flooring Inc. to bring bespoke craftsmanship to the luxury waterfront market. Merging northern durability with coastal aesthetics.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy -->
+    <section class="philosophy-section">
+        <div class="container">
+            <div class="philosophy-quote">
+                "Most contractors see 1,000 square feet of lumber. I see 1,000 individual pieces of a puzzle that must lock together perfectly."
+            </div>
+            <div class="philosophy-grid">
+                <div class="phil-item">
+                    <i class="fas fa-ruler-combined"></i>
+                    <h4>Mathematical Precision</h4>
+                    <p>We don't just start laying planks. We calculate the layout to ensure symmetry in every hallway and minimal waste. The difference is in the edges.</p>
+                </div>
+                <div class="phil-item">
+                    <i class="fas fa-tint"></i>
+                    <h4>Custom Staining</h4>
+                    <p>A stain color on a chart is just a suggestion. We mix custom pigments on-site to match your furniture, lighting, and vision exactly.</p>
+                </div>
+                <div class="phil-item">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <h4>Owner-Operator</h4>
+                    <p>I don't just sell the job and send a crew. I am on every job site, knee-pads on, ensuring the Erickson standard is met.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Details -->
+    <section class="details-section">
+        <div class="container">
+            <!-- Block 1 -->
+            <div class="detail-block">
+                <img src="https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=2069&auto=format&fit=crop" alt="Sanding machine">
+                <div class="detail-content">
+                    <h3>The Art of the Sand</h3>
+                    <p>Refinishing is where the true master is revealed. It requires a delicate touch to remove imperfections without gouging the wood.</p>
+                    <ul>
+                        <li><strong>Dustless Systems:</strong> We use hospital-grade HEPA vacuums. No dust clouds.</li>
+                        <li><strong>Water Popping:</strong> A technique to open the grain for deeper, richer color penetration.</li>
+                        <li><strong>Commercial Grade Sealants:</strong> We use Bona Traffic HD, the industry leader for durability.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Block 2 (Reverse) -->
+            <div class="detail-block reverse">
+                <div class="detail-content">
+                    <h3>Subfloor Obsession</h3>
+                    <p>A beautiful floor on a bad subfloor is a ticking time bomb. Squeaks, gaps, and cupping happen beneath the surface.</p>
+                    <p style="margin-top: 15px;">Before a single plank is laid, we laser-level the concrete or plywood. We grind down high spots and fill low spots. If the foundation isn't perfect, we don't start. That is the Erickson promise.</p>
+                </div>
+                <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?q=80&w=1887&auto=format&fit=crop" alt="Subfloor prep">
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <section class="cta-bar">
+        <h2>Experience the Difference</h2>
+        <p>Don't trust your home to a generalist. Hire a specialist.</p>
+        <a href="erickson_flooring.html#contact" class="btn-white">Schedule Consultation</a>
+    </section>
+
+    <footer style="background: var(--primary); padding: 40px; text-align: center; color: rgba(255,255,255,0.4); font-size: 0.8rem;">
+        <p>&copy; 2026 Erickson Flooring Inc. | Chicago Roots. Tampa Living.</p>
+    </footer>
+
+</body>
+</html>

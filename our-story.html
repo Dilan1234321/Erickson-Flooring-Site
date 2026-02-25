@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Craftsman | Erickson Flooring Inc.</title>
+
+<!-- Fonts: Playfair Display + Lato -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<style>
+/* -------------------------------------------------------------------
+   VARIABLES & RESET
+------------------------------------------------------------------- */
+:root {
+    --primary: #121212;        /* Obsidian */
+    --accent: #d4af37;         /* Antique Gold */
+    --paper: #fdfbf7;          /* Warm Paper Tone */
+    --text: #2c2c2c;
+    --transition: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: var(--paper);
+    color: var(--text);
+    line-height: 1.9;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--primary);
+}
+
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+.container { max-width: 1000px; margin: 0 auto; padding: 0 30px; }
+.gold-text { color: var(--accent); }
+.italic { font-style: italic; font-family: 'Playfair Display', serif; }
+
+/* -------------------------------------------------------------------
+   HEADER
+------------------------------------------------------------------- */
+header {
+    background: transparent;
+    padding: 30px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+}
+.logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: white; letter-spacing: 2px; }
+.logo span { color: var(--accent); }
+nav ul { display: flex; gap: 40px; }
+nav a { color: rgba(255,255,255,0.8); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; }
+nav a:hover { color: var(--accent); }
+
+/* -------------------------------------------------------------------
+   HERO - EMOTIONAL
+------------------------------------------------------------------- */
+.story-hero {
+    position: relative;
+    height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: #000;
+}
+
+.story-hero-bg {
+    position: absolute;
+    inset: 0;
+    /* Image: Close up of hands working wood, gritty, moody */
+    background-image: url('https://images.unsplash.com/photo-1543854593-6a9c12217f09?q=80&w=2069&auto=format&fit=crop'); 
+    background-size: cover;
+    background-position: center;
+    opacity: 0.4;
+    filter: sepia(20%) contrast(1.1);
+}
+
+.story-hero-content {
+    position: relative;
+    z-index: 2;
+    color: white;
+    max-width: 700px;
+}
+
+.story-hero h1 { 
+    font-size: clamp(2.5rem, 5vw, 4.5rem); 
+    margin-bottom: 20px; 
+    color: white; 
+    font-style: italic;
+}
+.story-hero p {
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.9);
+}
+.divider { width: 80px; height: 2px; background: var(--accent); margin: 30px auto; }
+
+/* -------------------------------------------------------------------
+   THE NARRATIVE
+------------------------------------------------------------------- */
+.narrative-section { padding: 120px 0; background: var(--paper); }
+.narrative-block { margin-bottom: 80px; }
+
+.narrative-text {
+    font-size: 1.15rem;
+    color: #444;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.narrative-text p { margin-bottom: 30px; }
+.narrative-text strong { color: var(--primary); font-weight: 700; }
+
+.drop-cap {
+    float: left;
+    font-size: 5.5rem;
+    line-height: 0.7;
+    padding-right: 20px;
+    padding-top: 10px;
+    color: var(--accent);
+    font-family: 'Playfair Display', serif;
+}
+
+.pull-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    text-align: center;
+    color: var(--primary);
+    font-style: italic;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding: 40px;
+    margin: 60px auto;
+    max-width: 900px;
+}
+
+/* -------------------------------------------------------------------
+   CHICAGO TO TAMPA VISUAL
+------------------------------------------------------------------- */
+.roots-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 600px;
+}
+.roots-img {
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+.roots-chicago { background-image: url('https://images.unsplash.com/photo-1494522855154-9297ac14b55f?q=80&w=2070&auto=format&fit=crop'); filter: grayscale(100%); }
+.roots-tampa { background-image: url('https://images.unsplash.com/photo-1596627689907-7e6188d30329?q=80&w=2070&auto=format&fit=crop'); }
+
+.roots-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    transition: 0.4s;
+}
+.roots-img:hover .roots-overlay { background: rgba(0,0,0,0.2); }
+.roots-overlay h3 { font-size: 2.5rem; color: white; margin-bottom: 10px; }
+.roots-overlay span { letter-spacing: 2px; text-transform: uppercase; font-size: 0.9rem; color: var(--accent); background: rgba(0,0,0,0.8); padding: 5px 15px; }
+
+/* -------------------------------------------------------------------
+   THE CREED (Values)
+------------------------------------------------------------------- */
+.creed-section {
+    background: #1a1a1a;
+    color: #ccc;
+    padding: 100px 0;
+}
+.creed-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+.creed-item h4 { color: white; font-size: 1.5rem; margin-bottom: 20px; border-left: 3px solid var(--accent); padding-left: 20px; }
+.creed-item p { font-size: 1rem; line-height: 1.8; }
+
+/* -------------------------------------------------------------------
+   FINAL CTA
+------------------------------------------------------------------- */
+.final-cta {
+    text-align: center;
+    padding: 120px 0;
+    background: white;
+}
+.final-cta h2 { font-size: 3rem; margin-bottom: 20px; }
+.final-cta p { font-size: 1.2rem; color: #666; max-width: 600px; margin: 0 auto 40px; }
+
+.signature {
+    font-family: 'Playfair Display', cursive; /* Fallback */
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 50px;
+    display: block;
+}
+
+.btn-gold {
+    display: inline-block;
+    padding: 20px 50px;
+    background: var(--accent);
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    box-shadow: 0 10px 30px rgba(197, 160, 89, 0.3);
+}
+.btn-gold:hover { background: #b08d4b; transform: translateY(-3px); }
+
+/* -------------------------------------------------------------------
+   MOBILE
+------------------------------------------------------------------- */
+@media (max-width: 768px) {
+    .story-hero h1 { font-size: 2.5rem; }
+    .roots-section { grid-template-columns: 1fr; height: auto; }
+    .roots-img { height: 300px; }
+    .drop-cap { font-size: 4rem; }
+    nav { display: none; }
+}
+</style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Erickson <span>Flooring</span></div>
+        <nav>
+            <ul>
+                <li><a href="erickson_flooring.html">Home</a></li>
+                <li><a href="erickson_story.html">Our Story</a></li>
+                <li><a href="erickson_flooring.html#contact" style="border-bottom: 1px solid var(--accent);">Start Your Project</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="story-hero">
+        <div class="story-hero-bg"></div>
+        <div class="story-hero-content">
+            <h1>"The floor remembers."</h1>
+            <div class="divider"></div>
+            <p>It remembers the weight of your furniture, the scuff of your boots,<br>and the first steps of your children.</p>
+        </div>
+    </section>
+
+    <section class="narrative-section">
+        <div class="container">
+            <div class="narrative-text">
+                <p><span class="drop-cap">I</span> grew up in Chicago, where buildings weren't just built; they were forged. I spent my twenties on my knees in hundred-year-old brownstones on the Gold Coast, breathing in dust that was older than my grandfather.</p>
+                
+                <p>Those winters were brutal. The cold would crack steel if you let it. It taught me that wood is alive. It expands, it contracts, it breathes. If you force it, it breaks. If you respect it, it lasts forever.</p>
+
+                <p>My mentor was an old-world craftsman who never owned a laser level in his life but could spot a 1/16th inch dip from across the room. He taught me that <strong>patience is the only shortcut</strong>. He taught me that the subfloor—the part nobody sees—is the only part that matters.</p>
+
+                <div class="pull-quote">
+                    "We don't just lay planks. We lay the foundation for your life's memories."
+                </div>
+
+                <p>When I moved to Tampa, I saw a lot of "fast." Fast builds, fast flips, fast finishes. I saw beautiful homes with floors that squeaked after six months because the installer rushed the acclimation. I saw seams separating because the humidity wasn't accounted for.</p>
+
+                <p>I started Erickson Flooring to bring the <strong>Chicago Standard</strong> to Florida. To bring that obsessiveness, that grit, that refusal to compromise, to a market that deserves better.</p>
+                
+                <p>I don't have a massive crew of strangers. When you hire Erickson, you get me. You get the guy who stays late to hand-scrape the corners. You get the guy who loses sleep over a single gap. You get a floor that will outlive us both.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="roots-section">
+        <div class="roots-img roots-chicago">
+            <div class="roots-overlay">
+                <h3>The Roots</h3>
+                <span>Chicago, IL</span>
+            </div>
+        </div>
+        <div class="roots-img roots-tampa">
+             <div class="roots-overlay">
+                <h3>The Future</h3>
+                <span>Tampa, FL</span>
+            </div>
+        </div>
+    </div>
+
+    <section class="creed-section">
+        <div class="creed-grid">
+            <div class="creed-item">
+                <h4>Honor the Grain</h4>
+                <p>Every tree grew differently. Every plank has a direction it wants to go. We don't fight nature; we align with it. That's the difference between a floor that looks good for a year and one that looks good for a lifetime.</p>
+            </div>
+            <div class="creed-item">
+                <h4>Silence is Luxury</h4>
+                <p>A luxury floor shouldn't announce your arrival. We spend 40% of our time on subfloor preparation—grinding concrete, leveling plywood, and using premium adhesives—so your home feels solid as rock.</p>
+            </div>
+            <div class="creed-item">
+                <h4>The Handshake</h4>
+                <p>This is a business of trust. You are letting me into your sanctuary. I treat your home with more respect than my own. No hidden costs. No surprise delays. Just honest, hard work.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="final-cta">
+        <div class="container">
+            <h2>Let's build something permanent.</h2>
+            <p>Your home deserves a foundation that tells a story. Let's write it together.</p>
+            
+            <div style="font-family: 'Great Vibes', cursive; font-size: 3rem; color: #333; margin-bottom: 40px;">
+                <!-- Fallback for signature font -->
+                <span style="font-family: serif; font-style: italic;">James Erickson</span>
+            </div>
+            
+            <a href="erickson_flooring.html#contact" class="btn-gold">Request a Personal Consultation</a>
+        </div>
+    </section>
+
+</body>
+</html>
