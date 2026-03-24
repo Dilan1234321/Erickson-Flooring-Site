@@ -3,152 +3,492 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact | Erickson Flooring Inc.</title>
+<title>Request Your Quote | Erickson Flooring Inc.</title>
+<meta name="description" content="Get a free quote from Tampa's luxury vinyl installation specialists. White-glove consultation for your LVP project.">
+
+<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
 <style>
-/* VARIABLES & RESET */
 :root {
     --primary: #1a1a1a;
     --accent: #c5a059;
-    --light: #f4f4f4;
-    --text-dark: #333;
+    --accent-hover: #b08d4b;
+    --light: #fdfdfd;
+    --text-dark: #1a1a1a;
+    --text-muted: #666;
+    --transition: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Lato', sans-serif; background-color: white; color: var(--text-dark); line-height: 1.7; }
-h1, h2, h3, h4 { font-family: 'Playfair Display', serif; font-weight: 700; color: var(--primary); }
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: var(--light);
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+h1, h2 { font-family: 'Playfair Display', serif; font-weight: 700; }
 a { text-decoration: none; color: inherit; transition: 0.3s; }
-.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+html { scroll-behavior: smooth; }
 
-/* NAV */
-header { background: var(--primary); padding: 20px 50px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
-.logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: white; letter-spacing: 1px; }
+/* URGENCY BAR */
+.urgency-bar {
+    background: var(--primary);
+    color: var(--accent);
+    text-align: center;
+    padding: 10px 0;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    position: relative;
+    z-index: 101;
+}
+
+/* -------------------------------------------------------------------
+   SCROLL ANIMATIONS
+------------------------------------------------------------------- */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s var(--transition), transform 0.8s var(--transition);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-60px);
+    transition: opacity 0.8s var(--transition), transform 0.8s var(--transition);
+}
+.reveal-left.visible { opacity: 1; transform: translateX(0); }
+.reveal-right {
+    opacity: 0;
+    transform: translateX(60px);
+    transition: opacity 0.8s var(--transition), transform 0.8s var(--transition);
+}
+.reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+/* -------------------------------------------------------------------
+   HEADER
+------------------------------------------------------------------- */
+header {
+    padding: 30px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: all 0.3s ease;
+}
+
+.logo { font-size: 1.8rem; font-family: 'Playfair Display', serif; font-weight: 700; }
 .logo span { color: var(--accent); }
-nav ul { display: flex; gap: 30px; }
-nav a { color: rgba(255,255,255,0.7); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
-nav a:hover, nav a.active { color: var(--accent); }
 
-/* CONTACT GRID */
-.contact-section { padding: 80px 0; }
-.contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px; }
+nav ul { display: flex; gap: 35px; align-items: center; list-style: none; }
+nav a {
+    color: #666;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+    position: relative;
+}
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+}
+nav a:hover { color: var(--primary); }
+nav a:hover::after { width: 100%; }
+nav a.active { color: var(--accent); }
+nav a.active::after { width: 100%; }
 
-.contact-info { background: #f9f9f9; padding: 50px; height: fit-content; }
-.contact-info h2 { font-size: 2rem; margin-bottom: 30px; }
-.info-item { margin-bottom: 30px; }
-.info-item h4 { font-size: 1.1rem; margin-bottom: 10px; color: var(--accent); }
-.info-item p { font-size: 1rem; color: #555; }
-.socials a { font-size: 1.5rem; margin-right: 15px; color: var(--primary); }
-.socials a:hover { color: var(--accent); }
+/* Mobile menu button */
+.mobile-menu-btn {
+    display: none;
+    color: var(--primary);
+    cursor: pointer;
+    z-index: 200;
+    background: none;
+    border: none;
+    width: 30px;
+    height: 24px;
+    position: relative;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.mobile-menu-btn span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--primary);
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+.mobile-menu-btn.active span:nth-child(1) { transform: rotate(45deg) translate(7px, 7px); }
+.mobile-menu-btn.active span:nth-child(2) { opacity: 0; }
+.mobile-menu-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(8px, -8px); }
 
-.contact-form-box { padding: 20px; }
-.form-group { margin-bottom: 25px; }
-.form-group label { display: block; font-weight: 700; margin-bottom: 10px; font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase; }
-input, select, textarea { width: 100%; padding: 15px; border: 1px solid #ddd; background: #fff; font-family: 'Lato', sans-serif; transition: 0.3s; }
-input:focus, select:focus, textarea:focus { border-color: var(--accent); outline: none; }
-button { width: 100%; padding: 18px; background: var(--primary); color: white; border: none; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: 0.3s; }
-button:hover { background: var(--accent); }
+.mobile-nav {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(26,26,26,0.98);
+    z-index: 150;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+.mobile-nav.open { display: flex; opacity: 1; }
+.mobile-nav a {
+    color: white;
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+}
+.mobile-nav a:hover { color: var(--accent); }
 
-/* MAP AREA */
-.service-area { text-align: center; padding: 60px 0; background: var(--primary); color: white; }
-.service-area h3 { color: white; margin-bottom: 20px; }
-.area-list span { margin: 0 15px; font-size: 1.1rem; opacity: 0.8; }
+/* -------------------------------------------------------------------
+   CONTACT LAYOUT
+------------------------------------------------------------------- */
+.contact-container {
+    max-width: 1200px;
+    margin: 80px auto;
+    padding: 0 40px;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 80px;
+    align-items: start;
+}
 
+.contact-info h1 { font-size: 3.5rem; margin-bottom: 20px; line-height: 1.1; }
+.contact-info > p { font-size: 1.15rem; color: var(--text-muted); margin-bottom: 40px; line-height: 1.7; }
+
+.detail-item { margin-bottom: 30px; }
+.detail-item h4 {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+    color: var(--accent);
+    margin-bottom: 5px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+}
+.detail-item span { font-size: 1.1rem; font-weight: 400; }
+
+/* Map / info extras */
+.contact-extras {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid #eee;
+}
+.contact-extras h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: var(--primary);
+}
+.trust-badges {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+.trust-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: #555;
+}
+.trust-badge i { color: var(--accent); font-size: 1.1rem; }
+
+/* -------------------------------------------------------------------
+   FORM
+------------------------------------------------------------------- */
+.form-box {
+    background: white;
+    padding: 60px;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.08);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 18px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 1rem;
+    background: #fafafa;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(197,160,89,0.15);
+}
+
+.btn {
+    padding: 20px 45px;
+    background: var(--accent);
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+    transition: all 0.4s ease;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font-family: 'Lato', sans-serif;
+}
+.btn:hover { background: var(--accent-hover); transform: translateY(-3px); }
+
+/* Form success state */
+.form-success {
+    position: absolute;
+    inset: 0;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    padding: 40px;
+    text-align: center;
+}
+.form-success.show { opacity: 1; pointer-events: auto; }
+.form-success .check-circle {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    transform: scale(0);
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s;
+}
+.form-success.show .check-circle { transform: scale(1); }
+.form-success .check-circle i { color: white; font-size: 2.5rem; }
+.form-success h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: var(--primary);
+}
+.form-success p { color: var(--text-muted); font-size: 1.05rem; max-width: 400px; line-height: 1.7; }
+.form-success .reset-link {
+    margin-top: 20px;
+    color: var(--accent);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-family: 'Lato', sans-serif;
+}
+.form-success .reset-link:hover { color: var(--accent-hover); }
+
+/* -------------------------------------------------------------------
+   FOOTER
+------------------------------------------------------------------- */
+footer {
+    padding: 40px 0;
+    text-align: center;
+    color: #aaa;
+    font-size: 0.85rem;
+    border-top: 1px solid #eee;
+    margin-top: 100px;
+}
+footer a { color: var(--accent); font-weight: 700; }
+
+/* -------------------------------------------------------------------
+   MOBILE
+------------------------------------------------------------------- */
+@media (max-width: 900px) {
+    .contact-container { grid-template-columns: 1fr; gap: 40px; margin: 40px auto; }
+    .form-box { padding: 35px; }
+    .contact-info h1 { font-size: 2.5rem; }
+}
 @media (max-width: 768px) {
-    .contact-grid { grid-template-columns: 1fr; }
+    .urgency-bar { font-size: 0.65rem; padding: 8px 10px; letter-spacing: 1px; }
+    header { padding: 15px 20px; }
     nav { display: none; }
+    .mobile-menu-btn { display: flex; }
+    .form-grid { grid-template-columns: 1fr; }
+    .contact-container { padding: 0 20px; }
 }
 </style>
 </head>
 <body>
 
-<header>
-    <div class="logo">Erickson <span>Flooring</span></div>
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="our-story.html">Our Story</a></li>
-            <li><a href="portfolio.html">Portfolio</a></li>
-            <li><a href="contact.html" class="active" style="border: 1px solid var(--accent); padding: 8px 15px;">Get Quote</a></li>
-        </ul>
-    </nav>
-</header>
+    <div class="urgency-bar">Limited Openings for Luxury Vinyl Projects in Tampa — March 2026</div>
 
-<section class="contact-section">
-    <div class="container">
-        <div class="contact-grid">
-            
-            <div class="contact-info">
-                <h2>Let's Discuss Your Vision</h2>
-                <p style="margin-bottom: 40px; color: #666;">We limit our active projects to ensure quality. Please fill out the form to check availability for your timeline.</p>
-                
-                <div class="info-item">
-                    <h4>Direct Line</h4>
-                    <p>(813) 555-0199</p>
-                    <p>hello@ericksonflooring.com</p>
-                </div>
-                <div class="info-item">
-                    <h4>Studio & Workshop</h4>
-                    <p>123 Craftsman Way<br>Tampa, FL 33602<br><em>By Appointment Only</em></p>
-                </div>
-                <div class="socials">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                </div>
+    <header>
+        <a href="erickson_flooring.html" class="logo">Erickson <span>Flooring</span></a>
+        <nav>
+            <ul>
+                <li><a href="erickson_flooring.html">Home</a></li>
+                <li><a href="erickson_story.html">Our Story</a></li>
+                <li><a href="craftsmanship.html">Craftsmanship</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="contact.html" class="active">Get Quote</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+            </ul>
+        </nav>
+        <button class="mobile-menu-btn" id="menuBtn" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
+
+    <div class="mobile-nav" id="mobileNav">
+        <a href="erickson_flooring.html">Home</a>
+        <a href="erickson_story.html">Our Story</a>
+        <a href="craftsmanship.html">Craftsmanship</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="contact.html">Get Quote</a>
+        <a href="faq.html">FAQ</a>
+    </div>
+
+    <div class="contact-container">
+        <div class="contact-info reveal-left">
+            <h1>Let's Begin the<br>Transformation.</h1>
+            <p>Ready to bring the Chicago Standard of luxury vinyl installation to your Tampa home? Provide your details, and we'll schedule a white-glove consultation.</p>
+
+            <div class="detail-item">
+                <h4>Primary Service</h4>
+                <span>Exclusive Luxury Vinyl (LVP) Installation</span>
             </div>
 
-            <div class="contact-form-box">
-                <form>
-                    <div class="form-group">
-                        <label>Name</label>
-                        <input type="text" placeholder="Your Name">
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" placeholder="email@address.com">
-                    </div>
-                    <div class="form-group">
-                        <label>Phone</label>
-                        <input type="tel" placeholder="(813) ...">
-                    </div>
-                    <div class="form-group">
-                        <label>Project Type</label>
-                        <select>
-                            <option>Luxury Vinyl Plank (LVP)</option>
-                            <option>Stone-Look Vinyl Tile (LVT)</option>
-                            <option>Commercial Vinyl Flooring</option>
-                            <option>Herringbone / Patterned Vinyl</option>
-                            <option>Staircase Overlay</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Estimated Square Footage</label>
-                        <input type="text" placeholder="e.g. 1,500 sq ft">
-                    </div>
-                    <div class="form-group">
-                        <label>Message</label>
-                        <textarea rows="5" placeholder="Tell us about your project..."></textarea>
-                    </div>
-                    <button type="button">Request Consultation</button>
-                </form>
+            <div class="detail-item">
+                <h4>Location</h4>
+                <span>Serving Tampa, FL and surrounding areas</span>
             </div>
 
+            <div class="detail-item">
+                <h4>Direct Line</h4>
+                <span>(813) 555-0199</span>
+            </div>
+
+            <div class="detail-item">
+                <h4>Response Time</h4>
+                <span>Within 24 hours, guaranteed</span>
+            </div>
+
+            <div class="contact-extras">
+                <h4>Why Choose Us</h4>
+                <div class="trust-badges">
+                    <div class="trust-badge"><i class="fas fa-check-circle"></i> 100% Satisfaction Guarantee</div>
+                    <div class="trust-badge"><i class="fas fa-check-circle"></i> Free In-Home Consultation</div>
+                    <div class="trust-badge"><i class="fas fa-check-circle"></i> No Hidden Costs</div>
+                    <div class="trust-badge"><i class="fas fa-check-circle"></i> Licensed & Insured</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-box reveal-right">
+            <form id="quoteForm">
+                <div class="form-grid">
+                    <input type="text" placeholder="First Name" required>
+                    <input type="text" placeholder="Last Name" required>
+                </div>
+                <input type="email" placeholder="Email Address" required>
+                <input type="tel" placeholder="Phone Number">
+                <input type="text" placeholder="Project Zip Code">
+                <select>
+                    <option>Type of Project...</option>
+                    <option>Full Home Vinyl Install</option>
+                    <option>Single Room / Kitchen</option>
+                    <option>Staircase Transformation</option>
+                    <option>Custom Pattern (Herringbone/Chevron)</option>
+                    <option>Commercial Space</option>
+                </select>
+                <textarea rows="4" placeholder="Tell us about your space (Sq Ft, current flooring, timeline, etc.)"></textarea>
+                <button type="submit" class="btn">Claim Your Personal Quote</button>
+            </form>
+
+            <div class="form-success" id="formSuccess">
+                <div class="check-circle"><i class="fas fa-check"></i></div>
+                <h3>Request Received!</h3>
+                <p>Thank you for choosing Erickson Flooring. We'll reach out within 24 hours to schedule your complimentary in-home consultation.</p>
+                <button class="reset-link" id="resetBtn">Submit Another Request</button>
+            </div>
         </div>
     </div>
-</section>
 
-<div class="service-area">
-    <h3>Proudly Serving Tampa Bay</h3>
-    <div class="area-list">
-        <span>South Tampa</span> • 
-        <span>Davis Islands</span> • 
-        <span>St. Petersburg</span> • 
-        <span>Clearwater Beach</span> • 
-        <span>Wesley Chapel</span>
-    </div>
-</div>
+    <footer>
+        <p>&copy; 2026 Erickson Flooring Inc. | Designed by <a href="https://dilankochhar.com">Dilan Kochhar</a></p>
+    </footer>
+
+    <script>
+        // ===== MOBILE MENU =====
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('active');
+            mobileNav.classList.toggle('open');
+            document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+        });
+
+        // ===== FORM SUBMISSION =====
+        const quoteForm = document.getElementById('quoteForm');
+        const formSuccess = document.getElementById('formSuccess');
+        const resetBtn = document.getElementById('resetBtn');
+
+        quoteForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            formSuccess.classList.add('show');
+        });
+
+        resetBtn.addEventListener('click', () => {
+            formSuccess.classList.remove('show');
+            quoteForm.reset();
+        });
+
+        // ===== SCROLL REVEAL =====
+        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+    </script>
 
 </body>
 </html>

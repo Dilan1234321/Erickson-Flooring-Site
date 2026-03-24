@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Frequently Asked Questions | Erickson Flooring Inc.</title>
+<meta name="description" content="Everything you need to know about luxury vinyl installation with Erickson Flooring — timeline, pricing, preparation, and more.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<style>
+:root {
+    --primary: #1a1a1a;
+    --accent: #c5a059;
+    --accent-hover: #b08d4b;
+    --paper: #fdfbf7;
+    --text-dark: #333;
+    --transition: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: var(--paper);
+    color: var(--text-dark);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+h1, h2, h3, h4 { font-family: 'Playfair Display', serif; font-weight: 700; line-height: 1.2; }
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+ul { list-style: none; }
+
+/* URGENCY BAR */
+.urgency-bar {
+    background: var(--primary);
+    color: var(--accent);
+    text-align: center;
+    padding: 10px 0;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    position: relative;
+    z-index: 101;
+}
+
+/* -------------------------------------------------------------------
+   HEADER
+------------------------------------------------------------------- */
+header {
+    padding: 30px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+.logo { font-size: 1.8rem; font-family: 'Playfair Display', serif; font-weight: 700; }
+.logo span { color: var(--accent); }
+nav ul { display: flex; gap: 35px; align-items: center; }
+nav a {
+    color: #666; font-size: 0.8rem; text-transform: uppercase;
+    letter-spacing: 1.5px; font-weight: 700; position: relative;
+}
+nav a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--accent); transition: width 0.3s ease; }
+nav a:hover { color: var(--primary); }
+nav a:hover::after { width: 100%; }
+nav a.active { color: var(--accent); }
+nav a.active::after { width: 100%; }
+
+.mobile-menu-btn {
+    display: none; color: var(--primary); cursor: pointer; z-index: 200;
+    background: none; border: none; width: 30px; height: 24px;
+    flex-direction: column; justify-content: space-between;
+}
+.mobile-menu-btn span { display: block; width: 100%; height: 2px; background: var(--primary); transition: all 0.3s ease; transform-origin: center; }
+.mobile-menu-btn.active span:nth-child(1) { transform: rotate(45deg) translate(7px, 7px); }
+.mobile-menu-btn.active span:nth-child(2) { opacity: 0; }
+.mobile-menu-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(8px, -8px); }
+
+.mobile-nav {
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+    background: rgba(26,26,26,0.98); z-index: 150;
+    flex-direction: column; justify-content: center; align-items: center; gap: 30px;
+    opacity: 0; transition: opacity 0.4s ease;
+}
+.mobile-nav.open { display: flex; opacity: 1; }
+.mobile-nav a { color: white; font-family: 'Playfair Display', serif; font-size: 2rem; }
+.mobile-nav a:hover { color: var(--accent); }
+
+/* -------------------------------------------------------------------
+   ANIMATIONS
+------------------------------------------------------------------- */
+.reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s var(--transition), transform 0.8s var(--transition); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* -------------------------------------------------------------------
+   PAGE HEADER
+------------------------------------------------------------------- */
+.page-header {
+    text-align: center;
+    padding: 80px 20px 60px;
+    background: white;
+    border-bottom: 1px solid #eee;
+}
+.page-header .label {
+    font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--accent); font-weight: 700; display: block; margin-bottom: 15px;
+}
+.page-header h1 {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    color: var(--primary); margin-bottom: 15px;
+}
+.page-header p {
+    color: #777; font-size: 1.15rem; max-width: 550px; margin: 0 auto;
+}
+
+/* -------------------------------------------------------------------
+   FAQ CATEGORY TABS
+------------------------------------------------------------------- */
+.faq-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 30px 20px;
+    background: white;
+    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 95px;
+    z-index: 50;
+}
+.faq-tab {
+    padding: 10px 25px;
+    background: transparent;
+    border: 1px solid #ddd;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #666;
+    border-radius: 2px;
+}
+.faq-tab:hover { border-color: var(--accent); color: var(--accent); }
+.faq-tab.active { background: var(--primary); color: var(--accent); border-color: var(--primary); }
+
+/* -------------------------------------------------------------------
+   FAQ ACCORDION
+------------------------------------------------------------------- */
+.faq-section {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 60px 30px 100px;
+}
+
+.faq-category {
+    margin-bottom: 60px;
+}
+.faq-category-title {
+    font-size: 1.6rem;
+    color: var(--primary);
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.faq-category-title i {
+    color: var(--accent);
+    font-size: 1.2rem;
+}
+
+.faq-item {
+    border-bottom: 1px solid #eee;
+    transition: background 0.3s;
+}
+.faq-item:hover { background: rgba(197,160,89,0.03); }
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 0;
+    cursor: pointer;
+    gap: 20px;
+    user-select: none;
+}
+.faq-question h4 {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--primary);
+    line-height: 1.5;
+    transition: color 0.3s;
+}
+.faq-item.open .faq-question h4 { color: var(--accent); }
+
+.faq-toggle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+    color: #999;
+    font-size: 0.8rem;
+}
+.faq-item.open .faq-toggle {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s var(--transition), padding 0.3s;
+}
+.faq-item.open .faq-answer {
+    max-height: 500px;
+}
+.faq-answer-inner {
+    padding: 0 0 25px;
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.9;
+}
+.faq-answer-inner strong { color: var(--primary); }
+
+/* -------------------------------------------------------------------
+   STILL HAVE QUESTIONS CTA
+------------------------------------------------------------------- */
+.faq-cta {
+    text-align: center;
+    padding: 100px 20px;
+    background: var(--primary);
+    position: relative;
+    overflow: hidden;
+}
+.faq-cta::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(197,160,89,0.08) 0%, transparent 70%);
+}
+.faq-cta h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: white; margin-bottom: 15px; position: relative;
+}
+.faq-cta p {
+    font-size: 1.15rem; color: rgba(255,255,255,0.6); max-width: 500px;
+    margin: 0 auto 35px; position: relative;
+}
+.faq-cta-buttons {
+    display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; position: relative;
+}
+.btn-gold {
+    display: inline-block; padding: 20px 50px;
+    background: var(--accent); color: white;
+    font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem;
+    box-shadow: 0 10px 40px rgba(197,160,89,0.3); transition: all 0.4s ease;
+}
+.btn-gold:hover { background: var(--accent-hover); transform: translateY(-4px); }
+
+.btn-outline {
+    display: inline-block; padding: 20px 50px;
+    border: 2px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.7);
+    font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem;
+    transition: all 0.4s ease;
+}
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-4px); }
+
+/* -------------------------------------------------------------------
+   FOOTER
+------------------------------------------------------------------- */
+footer {
+    background: var(--primary); color: rgba(255,255,255,0.4);
+    padding: 40px 0; text-align: center; font-size: 0.85rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+footer a { color: var(--accent); font-weight: 700; }
+
+/* -------------------------------------------------------------------
+   MOBILE
+------------------------------------------------------------------- */
+@media (max-width: 768px) {
+    .urgency-bar { font-size: 0.65rem; padding: 8px 10px; letter-spacing: 1px; }
+    header { padding: 15px 20px; }
+    nav { display: none; }
+    .mobile-menu-btn { display: flex; }
+    .page-header { padding: 50px 20px 40px; }
+    .page-header h1 { font-size: 2.2rem; }
+    .faq-tabs { top: 57px; padding: 15px 10px; gap: 6px; }
+    .faq-tab { padding: 8px 16px; font-size: 0.7rem; }
+    .faq-section { padding: 40px 20px 60px; }
+    .faq-category-title { font-size: 1.3rem; }
+    .faq-question h4 { font-size: 0.95rem; }
+    .faq-cta { padding: 60px 20px; }
+    .faq-cta-buttons { flex-direction: column; align-items: center; }
+}
+</style>
+</head>
+<body>
+
+    <div class="urgency-bar">Limited Openings for Luxury Vinyl Projects in Tampa — March 2026</div>
+
+    <header>
+        <a href="erickson_flooring.html" class="logo">Erickson <span>Flooring</span></a>
+        <nav>
+            <ul>
+                <li><a href="erickson_flooring.html">Home</a></li>
+                <li><a href="erickson_story.html">Our Story</a></li>
+                <li><a href="craftsmanship.html">Craftsmanship</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="contact.html">Get Quote</a></li>
+                <li><a href="faq.html" class="active">FAQ</a></li>
+            </ul>
+        </nav>
+        <button class="mobile-menu-btn" id="menuBtn" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
+
+    <div class="mobile-nav" id="mobileNav">
+        <a href="erickson_flooring.html">Home</a>
+        <a href="erickson_story.html">Our Story</a>
+        <a href="craftsmanship.html">Craftsmanship</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="contact.html">Get Quote</a>
+        <a href="faq.html">FAQ</a>
+    </div>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <span class="label">Your Questions, Answered</span>
+        <h1>Frequently Asked Questions</h1>
+        <p>Everything you need to know before, during, and after your luxury vinyl installation.</p>
+    </div>
+
+    <!-- Category Tabs -->
+    <div class="faq-tabs">
+        <button class="faq-tab active" data-tab="all">All</button>
+        <button class="faq-tab" data-tab="before">Before You Book</button>
+        <button class="faq-tab" data-tab="process">The Process</button>
+        <button class="faq-tab" data-tab="material">About LVP</button>
+        <button class="faq-tab" data-tab="after">After Installation</button>
+    </div>
+
+    <!-- FAQ Accordion -->
+    <div class="faq-section">
+
+        <!-- BEFORE YOU BOOK -->
+        <div class="faq-category reveal" data-category="before">
+            <div class="faq-category-title"><i class="fas fa-calendar-check"></i> Before You Book</div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h4>How much does luxury vinyl installation cost?</h4>
+                    <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">Every project is unique, so we provide custom quotes based on your square footage, subfloor condition, layout complexity, and material choice. We offer a <strong>free in-home consultation</strong> where we assess everything in person and provide a detailed, transparent proposal — no hidden costs, no surprise upcharges. Most residential projects fall in a range that reflects the master-level preparation and precision we bring to every install.</div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h4>Do you offer free estimates?</h4>
+                    <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">Yes — every project begins with a <strong>complimentary in-home assessment</strong>. We inspect your subfloor, measure moisture levels, discuss your vision and material preferences, and provide a full written proposal within 48 hours. There's absolutely no obligation.</div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h4>How far in advance should I book?</h4>
+                    <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">We recommend booking <strong>2–4 weeks in advance</strong>, though availability varies by season. Spring and fall are our busiest periods. The sooner you reach out, the more flexibility we have with scheduling.</div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h4>Do I need to supply the flooring material, or do you provide it?</h4>
+                    <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">Either works. We're happy to install material you've already purchased, or we can guide you to the <strong>best-performing LVP products</strong> for your space and climate. We've tested dozens of brands in Tampa's humidity and know exactly which ones hold up — and which ones don't.</div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h4>What areas do you serve?</h4>
+                    <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">We serve <strong>Tampa, South Tampa, Hyde Park, Davis Islands, Bayshore, Channelside, Westshore, Carrollwood, Wesley Chapel, Brandon</strong>, and surrounding areas within Hillsborough County. For larger projects, we'll travel further — just ask.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- THE PROCESS -->
+        <div class="faq-category reveal" data-category="process">
+            <div class="faq-category-title"><i class="fas fa-tools"></i> The Process</div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h4>How long does a typical installation take?</h4>
+                    <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">It depends on the scope: a single room or kitchen can be done in <strong>1–2 days</strong>. A full home (2,000+ sq ft) typically takes <strong>4–6 days</strong>, including our extensive subfloor preparation. Staircase work adds 1–2 days. We'll give you a precise timeline in your proposal.</div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h4>Do I need to move my furniture?</h4>
+                    <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">We ask that <strong>smaller items, electronics, and breakables</strong> are moved before we arrive. For larger furniture (sofas, beds, dressers), we can move them room-to-room as we work — this is included in our service at no extra charge.</div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h4>Why do you spend so much time on subfloor preparation?</h4>
+                    <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">Because the subfloor is the only thing that matters. A beautiful floor installed on an uneven subfloor will <strong>squeak, shift, and develop gaps</strong> within months. We grind high spots, fill low spots, check moisture, and test every inch with a straightedge. This is the work that separates a 2-year floor from a 20-year floor — and it's what the "fast" installers skip.</div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h4>Can I stay in my home during installation?</h4>
+                    <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">Absolutely. LVP installation is <strong>much less disruptive</strong> than hardwood or tile. There's no harsh chemical smell, no sanding dust, and no extended dry times. We work room by room so you always have functional living space.</div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h4>What about my pets?</h4>
+                    <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">We love pets — and LVP loves them too. We just ask that dogs and cats are kept in a <strong>separate room or area</strong> while we're actively working, for their safety and ours. Bonus: luxury vinyl is one of the most pet-friendly flooring materials on the market. Scratch-resistant, waterproof, and easy to clean.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ABOUT LVP -->
+        <div class="faq-category reveal" data-category="material">
+            <div class="faq-category-title"><i class="fas fa-layer-group"></i> About Luxury Vinyl</div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h4>Is luxury vinyl really waterproof?</h4>
+                    <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner"><strong>Yes — 100% waterproof</strong>, when properly installed. Rigid-core SPC (Stone Polymer Composite) vinyl will not swell, warp, or buckle from water exposure. This makes it ideal for kitchens, bathrooms, laundry rooms, and Florida homes where humidity is a constant factor. The key is proper installation — especially seam integrity and expansion gaps.</div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h4>Will it look like "fake wood"?</h4>
+                    <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">Not when we install it. Modern premium LVP features <strong>deep embossed textures, registered grain patterns, and matte finishes</strong> that are virtually indistinguishable from real hardwood — even to the touch. The difference comes down to installation quality: tight seams, proper transitions, and eliminating the "floating floor" feel through meticulous subfloor prep.</div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h4>How long does luxury vinyl last?</h4>
+                    <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">Premium rigid-core LVP with a <strong>20mil+ wear layer</strong> will last 20–30 years in residential settings with normal use. Commercial-grade (28mil+) can handle even higher traffic. The wear layer protects against scratches, stains, and fading. Proper installation is what determines whether you get 5 years or 25 years out of the same material.</div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h4>Why choose LVP over hardwood or tile?</h4>
+                    <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">LVP gives you the <strong>aesthetic of hardwood</strong> with the <strong>durability of tile</strong> — at a price point that's often 30–50% less. It's 100% waterproof (hardwood isn't), warmer underfoot than tile, softer on joints, and virtually scratch-proof. For Florida homes with pets, kids, and humidity, it's the smartest choice available. The only catch? It has to be installed correctly — and that's where we come in.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AFTER INSTALLATION -->
+        <div class="faq-category reveal" data-category="after">
+            <div class="faq-category-title"><i class="fas fa-check-double"></i> After Installation</div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h4>How do I care for my new LVP floor?</h4>
+                    <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">LVP is incredibly low maintenance. <strong>Sweep or vacuum regularly</strong> (use the hard floor setting), and mop with a damp mop and a pH-neutral vinyl cleaner. Avoid steam mops, abrasive cleaners, and excessive water pooling. Use felt pads under furniture legs. That's it — no refinishing, no resealing, no waxing. Ever.</div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h4>Do you offer a warranty or guarantee?</h4>
+                    <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">Yes — we stand behind every install with a <strong>100% satisfaction guarantee</strong>. We perform a final walk-through with you and don't consider the job complete until you've approved every inch. If any installation-related issue arises, we come back and make it right. Period.</div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h4>Can LVP be repaired if a plank gets damaged?</h4>
+                    <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">Yes. One of the great advantages of LVP is that <strong>individual planks can be replaced</strong> without disturbing the rest of the floor. We always recommend keeping a few extra boxes of your material after installation for this exact reason. If you need a repair, we can swap out damaged planks quickly and seamlessly.</div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h4>Will heavy furniture dent the vinyl?</h4>
+                    <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">Rigid-core SPC is extremely <strong>dent and indent resistant</strong> — far more than WPC (wood polymer composite) vinyl. That said, we always recommend <strong>furniture pads</strong> under heavy pieces. Avoid dragging furniture directly across the surface, and use wide, non-rubber casters on rolling chairs.</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Still Have Questions CTA -->
+    <section class="faq-cta reveal">
+        <h2>Still Have Questions?</h2>
+        <p>We'd love to hear from you. No pressure, no sales pitch — just honest answers from a craftsman who cares.</p>
+        <div class="faq-cta-buttons">
+            <a href="contact.html" class="btn-gold">Request a Consultation</a>
+            <a href="tel:8135550199" class="btn-outline"><i class="fas fa-phone" style="margin-right: 10px;"></i> (813) 555-0199</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Erickson Flooring Inc. | Designed by <a href="https://dilankochhar.com">Dilan Kochhar</a></p>
+    </footer>
+
+    <script>
+        // ===== MOBILE MENU =====
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('active');
+            mobileNav.classList.toggle('open');
+            document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+        });
+
+        // ===== FAQ ACCORDION =====
+        document.querySelectorAll('.faq-question').forEach(q => {
+            q.addEventListener('click', () => {
+                const item = q.parentElement;
+                const wasOpen = item.classList.contains('open');
+
+                // Close all in same category
+                item.closest('.faq-category').querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+
+                // Toggle clicked
+                if (!wasOpen) item.classList.add('open');
+            });
+        });
+
+        // ===== FAQ CATEGORY FILTER =====
+        const faqTabs = document.querySelectorAll('.faq-tab');
+        const faqCategories = document.querySelectorAll('.faq-category');
+
+        faqTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                faqTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                const filter = tab.dataset.tab;
+
+                faqCategories.forEach(cat => {
+                    if (filter === 'all' || cat.dataset.category === filter) {
+                        cat.style.display = 'block';
+                        cat.style.opacity = '0';
+                        cat.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            cat.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                            cat.style.opacity = '1';
+                            cat.style.transform = 'translateY(0)';
+                        }, 50);
+                    } else {
+                        cat.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // ===== SCROLL REVEAL =====
+        const revealEls = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        revealEls.forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>

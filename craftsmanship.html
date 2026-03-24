@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Craft | Erickson Flooring Inc.</title>
+<meta name="description" content="Inside the craft of luxury vinyl installation — subfloor mastery, precision cutting, and the Chicago Standard explained.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<style>
+/* -------------------------------------------------------------------
+   VARIABLES & RESET
+------------------------------------------------------------------- */
+:root {
+    --primary: #1a1a1a;
+    --accent: #c5a059;
+    --accent-hover: #b08d4b;
+    --light: #f4f4f4;
+    --paper: #fdfbf7;
+    --text-dark: #333;
+    --text-muted: #666;
+    --transition: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: var(--paper);
+    color: var(--text-dark);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4 { font-family: 'Playfair Display', serif; font-weight: 700; line-height: 1.2; }
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+ul { list-style: none; }
+
+/* URGENCY BAR */
+.urgency-bar {
+    background: var(--primary);
+    color: var(--accent);
+    text-align: center;
+    padding: 10px 0;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    position: relative;
+    z-index: 101;
+}
+
+/* -------------------------------------------------------------------
+   HEADER
+------------------------------------------------------------------- */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.4s ease;
+    background: transparent;
+}
+header.scrolled {
+    background: rgba(26,26,26,0.97);
+    padding: 15px 50px;
+    box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+    backdrop-filter: blur(10px);
+}
+body:not(.scrolled-past-bar) header { top: 40px; }
+body.scrolled-past-bar header { top: 0; }
+
+.logo { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: white; letter-spacing: 1px; }
+.logo span { color: var(--accent); }
+
+nav ul { display: flex; gap: 35px; align-items: center; }
+nav a {
+    color: rgba(255,255,255,0.8);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+    position: relative;
+}
+nav a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--accent); transition: width 0.3s ease; }
+nav a:hover { color: var(--accent); }
+nav a:hover::after { width: 100%; }
+nav a.active { color: var(--accent); }
+nav a.active::after { width: 100%; }
+
+.nav-cta { padding: 10px 22px !important; border: 1px solid var(--accent) !important; font-size: 0.75rem !important; letter-spacing: 2px; }
+.nav-cta::after { display: none; }
+.nav-cta:hover { background: var(--accent) !important; color: white !important; }
+
+.mobile-menu-btn {
+    display: none;
+    color: white;
+    cursor: pointer;
+    z-index: 200;
+    background: none;
+    border: none;
+    width: 30px;
+    height: 24px;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.mobile-menu-btn span { display: block; width: 100%; height: 2px; background: white; transition: all 0.3s ease; transform-origin: center; }
+.mobile-menu-btn.active span:nth-child(1) { transform: rotate(45deg) translate(7px, 7px); }
+.mobile-menu-btn.active span:nth-child(2) { opacity: 0; }
+.mobile-menu-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(8px, -8px); }
+
+.mobile-nav {
+    display: none;
+    position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+    background: rgba(26,26,26,0.98);
+    z-index: 150;
+    flex-direction: column; justify-content: center; align-items: center; gap: 30px;
+    opacity: 0; transition: opacity 0.4s ease;
+}
+.mobile-nav.open { display: flex; opacity: 1; }
+.mobile-nav a { color: white; font-family: 'Playfair Display', serif; font-size: 2rem; }
+.mobile-nav a:hover { color: var(--accent); }
+
+/* -------------------------------------------------------------------
+   ANIMATIONS
+------------------------------------------------------------------- */
+.reveal { opacity: 0; transform: translateY(50px); transition: opacity 0.9s var(--transition), transform 0.9s var(--transition); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-left { opacity: 0; transform: translateX(-70px); transition: opacity 0.9s var(--transition), transform 0.9s var(--transition); }
+.reveal-left.visible { opacity: 1; transform: translateX(0); }
+.reveal-right { opacity: 0; transform: translateX(70px); transition: opacity 0.9s var(--transition), transform 0.9s var(--transition); }
+.reveal-right.visible { opacity: 1; transform: translateX(0); }
+.reveal-scale { opacity: 0; transform: scale(0.9); transition: opacity 0.9s var(--transition), transform 0.9s var(--transition); }
+.reveal-scale.visible { opacity: 1; transform: scale(1); }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes zoomIn { from { transform: scale(1); } to { transform: scale(1.08); } }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes lineGrow { from { width: 0; } to { width: 80px; } }
+
+/* -------------------------------------------------------------------
+   HERO
+------------------------------------------------------------------- */
+.craft-hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: #000;
+    overflow: hidden;
+}
+.craft-hero-bg {
+    position: absolute; inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85f82e?q=80&w=2232&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.45;
+    animation: zoomIn 25s infinite alternate;
+}
+.craft-hero-content {
+    position: relative; z-index: 2; color: white; max-width: 850px; padding: 0 20px;
+}
+.craft-hero-label {
+    display: inline-block;
+    font-size: 0.8rem;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    color: var(--accent);
+    font-weight: 700;
+    opacity: 0;
+    animation: fadeUp 1s 0.3s forwards;
+}
+.craft-hero h1 {
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    margin-bottom: 25px;
+    color: white;
+    line-height: 1.05;
+    opacity: 0;
+    animation: fadeUp 1s 0.6s forwards;
+}
+.craft-hero h1 em { font-style: italic; color: var(--accent); }
+.craft-hero p {
+    font-size: 1.3rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.85);
+    max-width: 600px;
+    margin: 0 auto;
+    opacity: 0;
+    animation: fadeUp 1s 0.9s forwards;
+}
+.hero-line {
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    margin: 30px auto;
+    animation: lineGrow 1.2s 1.2s forwards;
+}
+
+.scroll-cue {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    text-align: center;
+    color: rgba(255,255,255,0.4);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+.scroll-cue .arrow {
+    display: block;
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+    margin: 12px auto 0;
+    animation: float 2s infinite;
+}
+
+/* -------------------------------------------------------------------
+   THE PHILOSOPHY (intro text)
+------------------------------------------------------------------- */
+.philosophy {
+    padding: 120px 0;
+    background: var(--paper);
+}
+.philosophy-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 30px;
+}
+.philosophy-inner .label {
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 20px;
+    display: block;
+}
+.philosophy-inner h2 {
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    margin-bottom: 30px;
+    color: var(--primary);
+}
+.philosophy-inner p {
+    font-size: 1.15rem;
+    color: #555;
+    line-height: 1.9;
+    margin-bottom: 20px;
+}
+
+/* -------------------------------------------------------------------
+   EDITORIAL SECTIONS (alternating image + text)
+------------------------------------------------------------------- */
+.editorial {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 700px;
+}
+.editorial.reverse .editorial-img { order: 2; }
+.editorial.reverse .editorial-text { order: 1; }
+
+.editorial-img {
+    position: relative;
+    overflow: hidden;
+}
+.editorial-img-bg {
+    position: absolute; inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: transform 8s ease;
+}
+.editorial-img:hover .editorial-img-bg { transform: scale(1.05); }
+
+.editorial-img-overlay {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    z-index: 2;
+}
+.editorial-img-overlay .tag {
+    background: var(--accent);
+    color: white;
+    padding: 8px 18px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.editorial-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 70px;
+    background: var(--paper);
+}
+.editorial-text .section-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem;
+    color: rgba(197,160,89,0.15);
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 10px;
+}
+.editorial-text .label {
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 15px;
+    display: block;
+}
+.editorial-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 25px;
+    color: var(--primary);
+}
+.editorial-text p {
+    font-size: 1.05rem;
+    color: #555;
+    line-height: 1.9;
+    margin-bottom: 20px;
+}
+.editorial-text .highlight-box {
+    background: white;
+    border-left: 3px solid var(--accent);
+    padding: 20px 25px;
+    margin-top: 15px;
+    font-size: 0.95rem;
+    color: #444;
+    line-height: 1.7;
+}
+.editorial-text .highlight-box strong { color: var(--primary); }
+
+/* Dark variant */
+.editorial-dark .editorial-text {
+    background: var(--primary);
+}
+.editorial-dark .editorial-text h2 { color: white; }
+.editorial-dark .editorial-text p { color: rgba(255,255,255,0.7); }
+.editorial-dark .editorial-text .section-num { color: rgba(197,160,89,0.2); }
+.editorial-dark .editorial-text .highlight-box {
+    background: rgba(255,255,255,0.05);
+    color: rgba(255,255,255,0.7);
+}
+.editorial-dark .editorial-text .highlight-box strong { color: var(--accent); }
+
+/* -------------------------------------------------------------------
+   FULL-WIDTH PARALLAX QUOTE
+------------------------------------------------------------------- */
+.parallax-quote {
+    position: relative;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}
+.parallax-quote-bg {
+    position: absolute; inset: -50px;
+    background-image: url('https://images.unsplash.com/photo-1615873968403-89e068629265?q=80&w=1932&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    filter: brightness(0.35);
+}
+.parallax-quote-content {
+    position: relative; z-index: 2;
+    max-width: 800px;
+    padding: 0 30px;
+}
+.parallax-quote blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    color: white;
+    font-style: italic;
+    line-height: 1.4;
+    margin-bottom: 20px;
+}
+.parallax-quote cite {
+    font-family: 'Lato', sans-serif;
+    font-style: normal;
+    font-size: 0.85rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 700;
+}
+
+/* -------------------------------------------------------------------
+   PROCESS TIMELINE
+------------------------------------------------------------------- */
+.process-section {
+    padding: 120px 0;
+    background: white;
+}
+.process-header {
+    text-align: center;
+    margin-bottom: 80px;
+}
+.process-header .label {
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 15px;
+    display: block;
+}
+.process-header h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--primary);
+    margin-bottom: 15px;
+}
+.process-header p { color: #777; font-size: 1.1rem; }
+
+/* Timeline */
+.timeline {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 30px;
+    position: relative;
+}
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--accent), rgba(197,160,89,0.1));
+}
+
+.timeline-item {
+    display: grid;
+    grid-template-columns: 1fr 80px 1fr;
+    align-items: center;
+    margin-bottom: 80px;
+    position: relative;
+}
+.timeline-item:last-child { margin-bottom: 0; }
+
+.timeline-item:nth-child(odd) .tl-content { grid-column: 1; text-align: right; padding-right: 40px; }
+.timeline-item:nth-child(odd) .tl-visual { grid-column: 3; padding-left: 40px; }
+.timeline-item:nth-child(even) .tl-content { grid-column: 3; text-align: left; padding-left: 40px; }
+.timeline-item:nth-child(even) .tl-visual { grid-column: 1; padding-right: 40px; }
+
+.tl-node {
+    grid-column: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+.tl-node .node-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+    transition: all 0.4s ease;
+}
+.timeline-item:hover .node-circle {
+    background: var(--accent);
+    color: white;
+    transform: scale(1.15);
+}
+
+.tl-content h3 { font-size: 1.6rem; margin-bottom: 10px; color: var(--primary); }
+.tl-content p { font-size: 0.95rem; color: #666; line-height: 1.8; }
+.tl-content .tl-duration {
+    display: inline-block;
+    margin-top: 12px;
+    background: rgba(197,160,89,0.1);
+    color: var(--accent);
+    padding: 5px 15px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 20px;
+}
+
+.tl-visual img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    transition: transform 0.4s ease;
+}
+.timeline-item:hover .tl-visual img { transform: scale(1.03); }
+
+/* -------------------------------------------------------------------
+   ANIMATED STATS
+------------------------------------------------------------------- */
+.stats-bar {
+    background: var(--primary);
+    padding: 80px 0;
+}
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 30px;
+    text-align: center;
+}
+.stat-item .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: var(--accent);
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 10px;
+    display: block;
+}
+.stat-item .stat-label {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* -------------------------------------------------------------------
+   MATERIALS SHOWCASE
+------------------------------------------------------------------- */
+.materials {
+    padding: 120px 0;
+    background: var(--paper);
+}
+.materials-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+.materials-header .label {
+    font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--accent); font-weight: 700; margin-bottom: 15px; display: block;
+}
+.materials-header h2 { font-size: clamp(2rem, 4vw, 3rem); color: var(--primary); }
+
+.materials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+.material-card {
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.material-card img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.6s ease;
+}
+.material-card:hover img { transform: scale(1.08); }
+.material-card-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%);
+    display: flex; flex-direction: column;
+    justify-content: flex-end;
+    padding: 30px;
+    transition: background 0.4s;
+}
+.material-card:hover .material-card-overlay {
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 60%);
+}
+.material-card-overlay h4 {
+    color: white; font-size: 1.4rem; margin-bottom: 5px;
+}
+.material-card-overlay span {
+    color: var(--accent); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 700;
+}
+.material-card-overlay p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9rem;
+    margin-top: 10px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, margin-top 0.5s ease;
+}
+.material-card:hover .material-card-overlay p { max-height: 100px; margin-top: 10px; }
+
+/* -------------------------------------------------------------------
+   FINAL CTA
+------------------------------------------------------------------- */
+.craft-cta {
+    text-align: center;
+    padding: 120px 0;
+    background: white;
+    position: relative;
+}
+.craft-cta h2 {
+    font-size: clamp(2.5rem, 4.5vw, 3.5rem);
+    margin-bottom: 20px; color: var(--primary);
+}
+.craft-cta p { font-size: 1.2rem; color: #666; max-width: 550px; margin: 0 auto 40px; }
+.btn-gold {
+    display: inline-block;
+    padding: 20px 55px;
+    background: var(--accent);
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.85rem;
+    box-shadow: 0 10px 40px rgba(197,160,89,0.3);
+    transition: all 0.4s ease;
+}
+.btn-gold:hover { background: var(--accent-hover); transform: translateY(-4px); box-shadow: 0 20px 50px rgba(197,160,89,0.35); }
+
+/* -------------------------------------------------------------------
+   FOOTER
+------------------------------------------------------------------- */
+footer {
+    background: var(--primary);
+    color: rgba(255,255,255,0.4);
+    padding: 40px 0;
+    text-align: center;
+    font-size: 0.85rem;
+}
+footer a { color: var(--accent); font-weight: 700; }
+
+/* -------------------------------------------------------------------
+   MOBILE
+------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+    .editorial { grid-template-columns: 1fr; min-height: auto; }
+    .editorial-img { height: 450px; }
+    .editorial.reverse .editorial-img { order: 0; }
+    .editorial.reverse .editorial-text { order: 0; }
+    .editorial-text { padding: 60px 40px; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .materials-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+    .urgency-bar { font-size: 0.65rem; padding: 8px 10px; letter-spacing: 1px; }
+    header { padding: 15px 20px; }
+    header.scrolled { padding: 12px 20px; }
+    nav { display: none; }
+    .mobile-menu-btn { display: flex; }
+
+    .craft-hero h1 { font-size: 2.8rem; }
+    .philosophy { padding: 70px 0; }
+    .editorial-text { padding: 40px 25px; }
+    .editorial-text .section-num { font-size: 3.5rem; }
+    .editorial-text h2 { font-size: 1.8rem; }
+    .parallax-quote { height: 400px; background-attachment: scroll; }
+    .parallax-quote-bg { background-attachment: scroll; }
+
+    /* Timeline mobile */
+    .timeline::before { left: 30px; }
+    .timeline-item { grid-template-columns: 60px 1fr; gap: 0; }
+    .tl-node { grid-column: 1; grid-row: 1; }
+    .tl-node .node-circle { width: 50px; height: 50px; font-size: 1.1rem; }
+    .timeline-item:nth-child(odd) .tl-content,
+    .timeline-item:nth-child(even) .tl-content { grid-column: 2; text-align: left; padding-left: 20px; padding-right: 0; }
+    .timeline-item:nth-child(odd) .tl-visual,
+    .timeline-item:nth-child(even) .tl-visual { display: none; }
+
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
+    .stat-item .stat-number { font-size: 2.5rem; }
+    .materials-grid { grid-template-columns: 1fr; }
+    .material-card { height: 300px; }
+
+    .process-section { padding: 70px 0; }
+    .materials { padding: 70px 0; }
+    .craft-cta { padding: 70px 0; }
+    .craft-cta h2 { font-size: 2.2rem; }
+}
+
+@media (max-width: 480px) {
+    .editorial-img { height: 320px; }
+}
+</style>
+</head>
+<body>
+
+    <div class="urgency-bar">Limited Openings for Luxury Vinyl Projects in Tampa — March 2026</div>
+
+    <header id="mainHeader">
+        <a href="erickson_flooring.html" class="logo">Erickson <span>Flooring</span></a>
+        <nav>
+            <ul>
+                <li><a href="erickson_flooring.html">Home</a></li>
+                <li><a href="erickson_story.html">Our Story</a></li>
+                <li><a href="craftsmanship.html" class="active">Craftsmanship</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="contact.html" class="nav-cta">Get Quote</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+            </ul>
+        </nav>
+        <button class="mobile-menu-btn" id="menuBtn" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
+
+    <div class="mobile-nav" id="mobileNav">
+        <a href="erickson_flooring.html">Home</a>
+        <a href="erickson_story.html">Our Story</a>
+        <a href="craftsmanship.html">Craftsmanship</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="contact.html">Get Quote</a>
+        <a href="faq.html">FAQ</a>
+    </div>
+
+    <!-- ============================================================
+         HERO
+    ============================================================ -->
+    <section class="craft-hero">
+        <div class="craft-hero-bg"></div>
+        <div class="craft-hero-content">
+            <span class="craft-hero-label">Inside the Craft</span>
+            <h1>Where Precision<br>Becomes <em>Art</em></h1>
+            <div class="hero-line"></div>
+            <p>Every plank we place is a deliberate act. Explore the techniques, obsessions, and standards behind the Erickson method.</p>
+        </div>
+        <div class="scroll-cue">
+            Discover
+            <span class="arrow"></span>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         PHILOSOPHY INTRO
+    ============================================================ -->
+    <section class="philosophy">
+        <div class="philosophy-inner reveal">
+            <span class="label">Our Philosophy</span>
+            <h2>Luxury vinyl is the most versatile material in modern construction — but only when installed by hands that refuse to compromise.</h2>
+            <p>Most installers treat LVP as a quick job. We treat it as an engineering discipline. The difference between a floor that impresses on day one and a floor that still impresses on year ten comes down to three things: subfloor mastery, precision cutting, and humidity science.</p>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         EDITORIAL SECTION 1: SUBFLOOR MASTERY
+    ============================================================ -->
+    <div class="editorial reveal-scale">
+        <div class="editorial-img">
+            <div class="editorial-img-bg" style="background-image: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2076&auto=format&fit=crop');"></div>
+            <div class="editorial-img-overlay">
+                <span class="tag">Foundation Work</span>
+            </div>
+        </div>
+        <div class="editorial-text">
+            <div class="section-num">01</div>
+            <span class="label">The Invisible Craft</span>
+            <h2>Master the Subfloor</h2>
+            <p>A floor is only as good as what's beneath it. While most installers spend 20% of their time on preparation, we spend nearly 50%. This is the invisible work that separates a floor that lasts from a floor that fails.</p>
+            <p>We grind down high spots in concrete, fill low spots with precision-leveling compound, and ensure plywood subfloors are screwed tight with zero flex. Every square foot is tested with a straightedge and moisture meter before a single plank is placed.</p>
+            <div class="highlight-box">
+                <strong>The Erickson Standard:</strong> No subfloor variance greater than 3/16" over 10 feet. That's twice as strict as the industry standard — and the reason our floors never squeak.
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         EDITORIAL SECTION 2: PRECISION CUTTING
+    ============================================================ -->
+    <div class="editorial reverse editorial-dark reveal-scale">
+        <div class="editorial-img">
+            <div class="editorial-img-bg" style="background-image: url('https://images.unsplash.com/photo-1572981779307-38b8cabb2407?q=80&w=2232&auto=format&fit=crop');"></div>
+            <div class="editorial-img-overlay">
+                <span class="tag">Millimeter Accuracy</span>
+            </div>
+        </div>
+        <div class="editorial-text">
+            <div class="section-num">02</div>
+            <span class="label">The Signature</span>
+            <h2>The Precision Cut</h2>
+            <p>We don't believe in "close enough." Every corner, every transition strip, and every vent cutout is measured twice and cut with millimeter accuracy. The goal is a finish so seamless that you can't tell where one plank ends and the next begins.</p>
+            <p>Where standard practice allows a 1/4" gap hidden by molding, we achieve joints tight enough that no filler, caulk, or trim is needed to disguise our work. The cuts speak for themselves.</p>
+            <div class="highlight-box">
+                <strong>Why it matters:</strong> Imprecise cuts create gaps that collect dust, allow moisture infiltration, and cause planks to shift over time. Precision isn't cosmetic — it's structural.
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         PARALLAX QUOTE
+    ============================================================ -->
+    <div class="parallax-quote">
+        <div class="parallax-quote-bg"></div>
+        <div class="parallax-quote-content reveal">
+            <blockquote>"The floor should feel like it was always meant to be there — like the house was built around it."</blockquote>
+            <cite>Erickson Flooring — Founder</cite>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         EDITORIAL SECTION 3: STAIRCASE MASTERY
+    ============================================================ -->
+    <div class="editorial reveal-scale">
+        <div class="editorial-img">
+            <div class="editorial-img-bg" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop');"></div>
+            <div class="editorial-img-overlay">
+                <span class="tag">Vertical Craft</span>
+            </div>
+        </div>
+        <div class="editorial-text">
+            <div class="section-num">03</div>
+            <span class="label">The Ultimate Test</span>
+            <h2>Staircase Transformations</h2>
+            <p>Staircases are the true test of an installer's skill. Every tread nose, every riser, every stringer requires custom templating and precision wrapping. There's no room for error — every cut is visible from multiple angles.</p>
+            <p>We template each step individually because no two stairs are identical. Our bullnose wrapping technique creates a monolithic look that rivals solid hardwood, with the durability of rigid-core vinyl and none of the creaking.</p>
+            <div class="highlight-box">
+                <strong>The difference:</strong> Most installers use pre-made stair nosing that never quite matches. We custom-cut every nose from matching plank material for a seamless visual flow.
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         EDITORIAL SECTION 4: HUMIDITY SCIENCE
+    ============================================================ -->
+    <div class="editorial reverse editorial-dark reveal-scale">
+        <div class="editorial-img">
+            <div class="editorial-img-bg" style="background-image: url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop');"></div>
+            <div class="editorial-img-overlay">
+                <span class="tag">Climate Mastery</span>
+            </div>
+        </div>
+        <div class="editorial-text">
+            <div class="section-num">04</div>
+            <span class="label">The Florida Factor</span>
+            <h2>Humidity Science</h2>
+            <p>Florida's subtropical climate is the silent killer of flooring installations. The gap between air conditioning and outdoor humidity creates a constant battle of expansion and contraction that most installers never account for.</p>
+            <p>We acclimate every plank to your home's specific microclimate. We test concrete moisture with calcium chloride and relative humidity probes. And we calibrate expansion gaps to Tampa's seasonal humidity range — not some generic spec from a manufacturer in the Midwest.</p>
+            <div class="highlight-box">
+                <strong>The Chicago-to-Tampa advantage:</strong> Learning to handle Chicago's brutal freeze-thaw cycles taught us respect for what temperature and moisture can do. Florida's humidity is a different beast — and we've mastered both.
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         STATS BAR
+    ============================================================ -->
+    <section class="stats-bar">
+        <div class="stats-grid">
+            <div class="stat-item reveal">
+                <span class="stat-number" data-target="50">0</span>
+                <span class="stat-label">% of Time on Subfloor Prep</span>
+            </div>
+            <div class="stat-item reveal">
+                <span class="stat-number" data-target="3">&lt;3</span>
+                <span class="stat-label">/16" Max Subfloor Variance</span>
+            </div>
+            <div class="stat-item reveal">
+                <span class="stat-number" data-target="100">0</span>
+                <span class="stat-label">% Satisfaction Rate</span>
+            </div>
+            <div class="stat-item reveal">
+                <span class="stat-number" data-target="0">0</span>
+                <span class="stat-label">Callbacks for Squeaking</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         PROCESS TIMELINE
+    ============================================================ -->
+    <section class="process-section">
+        <div class="process-header reveal">
+            <span class="label">From Start to Finish</span>
+            <h2>The Erickson Process</h2>
+            <p>Every project follows the same rigorous 6-step methodology.</p>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item reveal">
+                <div class="tl-content">
+                    <h3>Discovery Call</h3>
+                    <p>We learn about your space, your vision, and your lifestyle. Every project begins with listening.</p>
+                    <span class="tl-duration">15-minute call</span>
+                </div>
+                <div class="tl-node"><div class="node-circle">1</div></div>
+                <div class="tl-visual">
+                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2232&auto=format&fit=crop" alt="Consultation">
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="tl-content">
+                    <h3>In-Home Assessment</h3>
+                    <p>We inspect the subfloor, measure moisture levels, assess transitions, and document every variable that will affect your install.</p>
+                    <span class="tl-duration">1–2 hours on-site</span>
+                </div>
+                <div class="tl-node"><div class="node-circle">2</div></div>
+                <div class="tl-visual">
+                    <img src="https://images.unsplash.com/photo-1581783898377-1c85bf937427?q=80&w=2187&auto=format&fit=crop" alt="Assessment">
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="tl-content">
+                    <h3>Custom Proposal</h3>
+                    <p>You receive a detailed, transparent quote — no hidden fees, no surprise upcharges. Just an honest price for master-level work.</p>
+                    <span class="tl-duration">Delivered within 48 hours</span>
+                </div>
+                <div class="tl-node"><div class="node-circle">3</div></div>
+                <div class="tl-visual">
+                    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=2126&auto=format&fit=crop" alt="Proposal">
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="tl-content">
+                    <h3>Subfloor Preparation</h3>
+                    <p>The most critical phase. We grind, level, repair, and condition the subfloor until it meets the Erickson Standard — zero tolerance for imperfection.</p>
+                    <span class="tl-duration">1–2 days</span>
+                </div>
+                <div class="tl-node"><div class="node-circle">4</div></div>
+                <div class="tl-visual">
+                    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2076&auto=format&fit=crop" alt="Subfloor prep">
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="tl-content">
+                    <h3>Precision Installation</h3>
+                    <p>Plank by plank, cut by cut. Herringbone, straight-lay, or mixed patterns — each plank is placed with intention and verified for alignment.</p>
+                    <span class="tl-duration">2–5 days depending on scope</span>
+                </div>
+                <div class="tl-node"><div class="node-circle">5</div></div>
+                <div class="tl-visual">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?q=80&w=2232&auto=format&fit=crop" alt="Installation">
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="tl-content">
+                    <h3>Final Walk-Through</h3>
+                    <p>We don't leave until you've inspected every inch. Every transition, every cut, every seam — approved by you before we pack up.</p>
+                    <span class="tl-duration">Your stamp of approval</span>
+                </div>
+                <div class="tl-node"><div class="node-circle">6</div></div>
+                <div class="tl-visual">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" alt="Walk through">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         MATERIALS SHOWCASE
+    ============================================================ -->
+    <section class="materials">
+        <div class="materials-header reveal">
+            <span class="label">Materials We Trust</span>
+            <h2>The Best LVP on the Market</h2>
+        </div>
+        <div class="materials-grid">
+            <div class="material-card reveal">
+                <img src="https://images.unsplash.com/photo-1615873968403-89e068629265?q=80&w=1932&auto=format&fit=crop" alt="Rigid Core SPC">
+                <div class="material-card-overlay">
+                    <span>Premium Tier</span>
+                    <h4>Rigid-Core SPC</h4>
+                    <p>Stone Polymer Composite — the gold standard. 100% waterproof, dimensionally stable, and built for high-traffic Florida homes.</p>
+                </div>
+            </div>
+            <div class="material-card reveal">
+                <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4f9d?q=80&w=2070&auto=format&fit=crop" alt="Wide Plank">
+                <div class="material-card-overlay">
+                    <span>Designer Choice</span>
+                    <h4>Wide-Plank LVP</h4>
+                    <p>7"+ planks with deep embossed texture. The visual scale and warmth of solid hardwood with zero maintenance.</p>
+                </div>
+            </div>
+            <div class="material-card reveal">
+                <img src="https://images.unsplash.com/photo-1584622050111-993a426fbf0a?q=80&w=2070&auto=format&fit=crop" alt="Herringbone">
+                <div class="material-card-overlay">
+                    <span>Statement Pattern</span>
+                    <h4>Herringbone & Chevron</h4>
+                    <p>Architectural patterns that transform any space. Requires master-level precision — and that's exactly what we deliver.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         FINAL CTA
+    ============================================================ -->
+    <section class="craft-cta reveal">
+        <h2>Ready to Experience<br>the Difference?</h2>
+        <p>Your home deserves flooring installed with obsessive precision. Let's talk about your project.</p>
+        <a href="contact.html" class="btn-gold">Request Your Consultation</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Erickson Flooring Inc. | Designed by <a href="https://dilankochhar.com">Dilan Kochhar</a></p>
+    </footer>
+
+    <script>
+        // ===== MOBILE MENU =====
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('active');
+            mobileNav.classList.toggle('open');
+            document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+        });
+
+        // ===== STICKY HEADER =====
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 80) {
+                header.classList.add('scrolled');
+                document.body.classList.add('scrolled-past-bar');
+            } else {
+                header.classList.remove('scrolled');
+                document.body.classList.remove('scrolled-past-bar');
+            }
+        });
+
+        // ===== SCROLL REVEAL =====
+        const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+        revealEls.forEach(el => observer.observe(el));
+
+        // ===== ANIMATED COUNTERS =====
+        const counters = document.querySelectorAll('.stat-number[data-target]');
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const target = parseInt(el.getAttribute('data-target'));
+                    if (target === 0) { el.textContent = '0'; return; }
+                    let current = 0;
+                    const increment = Math.ceil(target / 60);
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) { current = target; clearInterval(timer); }
+                        el.textContent = current + (target === 100 ? '%' : '');
+                    }, 30);
+                    counterObserver.unobserve(el);
+                }
+            });
+        }, { threshold: 0.5 });
+        counters.forEach(c => counterObserver.observe(c));
+    </script>
+
+</body>
+</html>

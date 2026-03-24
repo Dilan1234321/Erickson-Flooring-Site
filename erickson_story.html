@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Vinyl Standard | Erickson Flooring Inc.</title>
+<meta name="description" content="The story behind Erickson Flooring — Chicago-trained precision brought to Tampa's luxury vinyl market.">
+
+<!-- Fonts: Playfair Display + Lato -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<style>
+/* -------------------------------------------------------------------
+   VARIABLES & RESET
+------------------------------------------------------------------- */
+:root {
+    --primary: #121212;
+    --accent: #c5a059;
+    --accent-hover: #b08d4b;
+    --paper: #fdfbf7;
+    --text: #2c2c2c;
+    --transition: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: var(--paper);
+    color: var(--text);
+    line-height: 1.9;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--primary);
+}
+
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+.container { max-width: 1000px; margin: 0 auto; padding: 0 30px; }
+.gold-text { color: var(--accent); }
+
+html { scroll-behavior: smooth; }
+
+/* URGENCY BAR */
+.urgency-bar {
+    background: var(--primary);
+    color: var(--accent);
+    text-align: center;
+    padding: 10px 0;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    position: relative;
+    z-index: 101;
+}
+
+/* -------------------------------------------------------------------
+   SCROLL ANIMATIONS
+------------------------------------------------------------------- */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s var(--transition), transform 0.8s var(--transition);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-60px);
+    transition: opacity 0.8s var(--transition), transform 0.8s var(--transition);
+}
+.reveal-left.visible { opacity: 1; transform: translateX(0); }
+.reveal-right {
+    opacity: 0;
+    transform: translateX(60px);
+    transition: opacity 0.8s var(--transition), transform 0.8s var(--transition);
+}
+.reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+/* -------------------------------------------------------------------
+   HEADER
+------------------------------------------------------------------- */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.4s ease;
+    background: transparent;
+}
+header.scrolled {
+    background: rgba(18,18,18,0.97);
+    padding: 15px 50px;
+    box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+    backdrop-filter: blur(10px);
+}
+body:not(.scrolled-past-bar) header { top: 40px; }
+body.scrolled-past-bar header { top: 0; }
+
+.logo { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: white; letter-spacing: 2px; font-weight: 700; }
+.logo span { color: var(--accent); }
+nav ul { display: flex; gap: 35px; align-items: center; }
+nav a {
+    color: rgba(255,255,255,0.8);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+    position: relative;
+}
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+}
+nav a:hover { color: var(--accent); }
+nav a:hover::after { width: 100%; }
+nav a.active { color: var(--accent); }
+nav a.active::after { width: 100%; }
+
+.nav-cta {
+    padding: 10px 22px !important;
+    border: 1px solid var(--accent) !important;
+    font-size: 0.75rem !important;
+    letter-spacing: 2px;
+}
+.nav-cta::after { display: none; }
+.nav-cta:hover { background: var(--accent) !important; color: white !important; }
+
+/* Mobile menu button */
+.mobile-menu-btn {
+    display: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 200;
+    background: none;
+    border: none;
+    width: 30px;
+    height: 24px;
+    position: relative;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.mobile-menu-btn span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: white;
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+.mobile-menu-btn.active span:nth-child(1) { transform: rotate(45deg) translate(7px, 7px); }
+.mobile-menu-btn.active span:nth-child(2) { opacity: 0; }
+.mobile-menu-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(8px, -8px); }
+
+.mobile-nav {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(18,18,18,0.98);
+    z-index: 150;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+.mobile-nav.open { display: flex; opacity: 1; }
+.mobile-nav a {
+    color: white;
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+}
+.mobile-nav a:hover { color: var(--accent); }
+
+/* -------------------------------------------------------------------
+   HERO
+------------------------------------------------------------------- */
+.story-hero {
+    position: relative;
+    height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: #000;
+}
+
+.story-hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1581858726768-758a030e9048?q=80&w=2080&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.4;
+    filter: sepia(10%) contrast(1.1);
+    animation: zoomIn 25s infinite alternate;
+}
+@keyframes zoomIn { from { transform: scale(1); } to { transform: scale(1.1); } }
+
+.story-hero-content {
+    position: relative;
+    z-index: 2;
+    color: white;
+    max-width: 700px;
+    padding: 0 20px;
+}
+
+.story-hero h1 {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    margin-bottom: 20px;
+    color: white;
+    font-style: italic;
+    opacity: 0;
+    animation: fadeUp 1s 0.3s forwards;
+}
+.story-hero p {
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.9);
+    opacity: 0;
+    animation: fadeUp 1s 0.7s forwards;
+}
+.divider {
+    width: 80px;
+    height: 2px;
+    background: var(--accent);
+    margin: 30px auto;
+    opacity: 0;
+    animation: fadeUp 1s 0.5s forwards;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* -------------------------------------------------------------------
+   THE NARRATIVE
+------------------------------------------------------------------- */
+.narrative-section { padding: 120px 0; background: var(--paper); }
+
+.narrative-text {
+    font-size: 1.15rem;
+    color: #444;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.narrative-text p { margin-bottom: 30px; }
+.narrative-text strong { color: var(--primary); font-weight: 700; }
+
+.drop-cap {
+    float: left;
+    font-size: 5.5rem;
+    line-height: 0.7;
+    padding-right: 20px;
+    padding-top: 10px;
+    color: var(--accent);
+    font-family: 'Playfair Display', serif;
+}
+
+.pull-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    text-align: center;
+    color: var(--primary);
+    font-style: italic;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding: 40px;
+    margin: 60px auto;
+    max-width: 900px;
+}
+
+/* -------------------------------------------------------------------
+   CHICAGO TO TAMPA
+------------------------------------------------------------------- */
+.roots-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 600px;
+}
+.roots-img {
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+}
+.roots-chicago {
+    background-image: url('https://images.unsplash.com/photo-1494522855154-9297ac14b55f?q=80&w=2070&auto=format&fit=crop');
+    filter: grayscale(100%);
+}
+.roots-tampa {
+    background-image: url('https://images.unsplash.com/photo-1596627689907-7e6188d30329?q=80&w=2070&auto=format&fit=crop');
+}
+
+.roots-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    transition: 0.4s;
+}
+.roots-img:hover .roots-overlay { background: rgba(0,0,0,0.2); }
+.roots-overlay h3 { font-size: 2.5rem; color: white; margin-bottom: 10px; }
+.roots-overlay span {
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    color: var(--accent);
+    background: rgba(0,0,0,0.8);
+    padding: 5px 15px;
+}
+
+/* -------------------------------------------------------------------
+   THE CREED (Values)
+------------------------------------------------------------------- */
+.creed-section {
+    background: #1a1a1a;
+    color: #ccc;
+    padding: 100px 0;
+}
+.creed-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+.creed-item h4 {
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    border-left: 3px solid var(--accent);
+    padding-left: 20px;
+}
+.creed-item p { font-size: 1rem; line-height: 1.8; }
+
+/* -------------------------------------------------------------------
+   FINAL CTA
+------------------------------------------------------------------- */
+.final-cta {
+    text-align: center;
+    padding: 120px 0;
+    background: white;
+}
+.final-cta h2 { font-size: 3rem; margin-bottom: 20px; }
+.final-cta p { font-size: 1.2rem; color: #666; max-width: 600px; margin: 0 auto 40px; }
+
+.btn-gold {
+    display: inline-block;
+    padding: 20px 50px;
+    background: var(--accent);
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    box-shadow: 0 10px 30px rgba(197, 160, 89, 0.3);
+    transition: all 0.4s ease;
+}
+.btn-gold:hover { background: var(--accent-hover); transform: translateY(-3px); }
+
+/* -------------------------------------------------------------------
+   FOOTER
+------------------------------------------------------------------- */
+footer {
+    background: var(--primary);
+    color: rgba(255,255,255,0.4);
+    padding: 40px 0;
+    text-align: center;
+    font-size: 0.85rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+footer a { color: var(--accent); font-weight: 700; }
+
+/* -------------------------------------------------------------------
+   MOBILE
+------------------------------------------------------------------- */
+@media (max-width: 768px) {
+    .urgency-bar { font-size: 0.65rem; padding: 8px 10px; letter-spacing: 1px; }
+    header { padding: 15px 20px; }
+    header.scrolled { padding: 12px 20px; }
+    nav { display: none; }
+    .mobile-menu-btn { display: flex; }
+
+    .story-hero { height: 70vh; }
+    .story-hero h1 { font-size: 2.5rem; }
+    .roots-section { grid-template-columns: 1fr; height: auto; }
+    .roots-img { height: 350px; }
+    .drop-cap { font-size: 4rem; }
+    .pull-quote { font-size: 1.5rem; padding: 30px 20px; }
+    .narrative-section { padding: 60px 0; }
+    .creed-section { padding: 60px 0; }
+    .final-cta { padding: 60px 0; }
+    .final-cta h2 { font-size: 2.2rem; }
+}
+</style>
+</head>
+<body>
+
+    <div class="urgency-bar">Accepting New Residential Projects in Tampa for March 2026 — Limited Availability</div>
+
+    <header id="mainHeader">
+        <a href="erickson_flooring.html" class="logo">Erickson <span>Flooring</span></a>
+        <nav>
+            <ul>
+                <li><a href="erickson_flooring.html">Home</a></li>
+                <li><a href="erickson_story.html" class="active">Our Story</a></li>
+                <li><a href="craftsmanship.html">Craftsmanship</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="contact.html" class="nav-cta">Get Quote</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+            </ul>
+        </nav>
+        <button class="mobile-menu-btn" id="menuBtn" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
+
+    <div class="mobile-nav" id="mobileNav">
+        <a href="erickson_flooring.html">Home</a>
+        <a href="erickson_story.html">Our Story</a>
+        <a href="craftsmanship.html">Craftsmanship</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="contact.html">Get Quote</a>
+        <a href="faq.html">FAQ</a>
+    </div>
+
+    <section class="story-hero">
+        <div class="story-hero-bg"></div>
+        <div class="story-hero-content">
+            <h1>"Modern mastery. Old-world soul."</h1>
+            <div class="divider"></div>
+            <p>Erickson Flooring brings architectural precision to the world's most versatile flooring material.<br>This is the Chicago Standard, reimagined for Tampa.</p>
+        </div>
+    </section>
+
+    <section class="narrative-section">
+        <div class="container">
+            <div class="narrative-text reveal">
+                <p><span class="drop-cap">I</span> grew up in Chicago, a city built on steel and sweat. I spent my twenties on my knees in hundred-year-old brownstones, breathing in dust that was older than my grandfather. It was there I learned that a floor isn't just a surface — it's the foundation of a home's character.</p>
+
+                <p>Most installers see vinyl as a "shortcut." I see it as an <strong>engineering challenge</strong>. Luxury Vinyl Plank (LVP) is the most resilient, high-performance material in modern construction, but it only lives up to its name when it's installed with surgical precision.</p>
+            </div>
+
+            <div class="pull-quote reveal">
+                "We don't just lay planks. We lay the foundation for your life's memories."
+            </div>
+
+            <div class="narrative-text reveal">
+                <p>When I moved to Tampa, I saw a market flooded with "fast" work. Beautiful homes were being fitted with premium vinyl that squeaked after six months because the subfloor wasn't leveled. Seams were separating because humidity wasn't accounted for.</p>
+
+                <p>I started Erickson Flooring to change that. I brought the <strong>Chicago Standard</strong> to Florida — the refusal to compromise, the obsession with detail, and the understanding that the subfloor is the only part that matters.</p>
+
+                <p>I specialize exclusively in <strong>Luxury Vinyl</strong>. Why? Because mastery requires focus. By dedicating myself to one craft, I've perfected the techniques required to make LVP look and feel indistinguishable from solid wood, with a durability that outlasts them all.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="roots-section">
+        <div class="roots-img roots-chicago">
+            <div class="roots-overlay">
+                <h3>The Roots</h3>
+                <span>Chicago, IL</span>
+            </div>
+        </div>
+        <div class="roots-img roots-tampa">
+            <div class="roots-overlay">
+                <h3>The Future</h3>
+                <span>Tampa, FL</span>
+            </div>
+        </div>
+    </div>
+
+    <section class="creed-section">
+        <div class="creed-grid">
+            <div class="creed-item reveal">
+                <h4>Master the Subfloor</h4>
+                <p>A floor is only as good as what's beneath it. We spend nearly half our time on preparation — grinding concrete and leveling plywood — to ensure your LVP feels as solid as a rock underfoot.</p>
+            </div>
+            <div class="creed-item reveal">
+                <h4>The Precision Cut</h4>
+                <p>We don't believe in "close enough." Every corner, every transition, and every vent is cut with millimeter accuracy. Our goal is a seamless finish that defies the limitations of the material.</p>
+            </div>
+            <div class="creed-item reveal">
+                <h4>A Legacy of Trust</h4>
+                <p>This is a business built on handshakes. You are letting me into your sanctuary, and I treat your home with more respect than my own. No hidden costs. No shortcuts. Just honest, Chicago-grade work.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="final-cta reveal">
+        <div class="container">
+            <h2>Let's build something permanent.</h2>
+            <p>Your home deserves a foundation that tells a story. Let's write it together.</p>
+            <a href="contact.html" class="btn-gold">Request a Personal Consultation</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Erickson Flooring Inc. | Designed by <a href="https://dilankochhar.com">Dilan Kochhar</a></p>
+    </footer>
+
+    <script>
+        // ===== MOBILE MENU =====
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('active');
+            mobileNav.classList.toggle('open');
+            document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+        });
+
+        // ===== STICKY HEADER =====
+        const header = document.getElementById('mainHeader');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 80) {
+                header.classList.add('scrolled');
+                document.body.classList.add('scrolled-past-bar');
+            } else {
+                header.classList.remove('scrolled');
+                document.body.classList.remove('scrolled-past-bar');
+            }
+        });
+
+        // ===== SCROLL REVEAL =====
+        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+    </script>
+
+</body>
+</html>

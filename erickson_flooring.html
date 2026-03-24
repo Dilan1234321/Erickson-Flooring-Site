@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Erickson Flooring | Luxury Vinyl Installation & Master Craftsmanship Tampa</title>
+<meta name="description" content="Master-level luxury vinyl plank installation in Tampa. Erickson Flooring delivers architectural precision and lifetime durability for elite homes.">
+
+<!-- Fonts: Playfair Display (Luxury Headings) + Lato (Clean Body) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<style>
+/* -------------------------------------------------------------------
+   VARIABLES & RESET
+------------------------------------------------------------------- */
+:root {
+    --primary: #1a1a1a;
+    --accent: #c5a059;
+    --accent-hover: #b08d4b;
+    --light: #f4f4f4;
+    --wood: #8b5a2b;
+    --text-dark: #333;
+    --text-light: #aaa;
+    --transition: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: var(--light);
+    color: var(--text-dark);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+ul { list-style: none; }
+
+/* URGENCY BAR */
+.urgency-bar {
+    background: var(--primary);
+    color: var(--accent);
+    text-align: center;
+    padding: 10px 0;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    position: relative;
+    z-index: 101;
+}
+
+/* -------------------------------------------------------------------
+   UTILITIES
+------------------------------------------------------------------- */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+.btn {
+    display: inline-block;
+    padding: 16px 36px;
+    border: 2px solid var(--accent);
+    color: var(--primary);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    background: transparent;
+    font-family: 'Lato', sans-serif;
+}
+.btn:hover { background: var(--accent); color: white; transform: translateY(-3px); }
+
+.btn-filled { background: var(--accent); color: white; }
+.btn-filled:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+
+.section-padding { padding: 100px 0; }
+.text-center { text-align: center; }
+.gold-text { color: var(--accent); }
+
+/* -------------------------------------------------------------------
+   SCROLL ANIMATIONS
+------------------------------------------------------------------- */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s var(--transition), transform 0.8s var(--transition);
+}
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-60px);
+    transition: opacity 0.8s var(--transition), transform 0.8s var(--transition);
+}
+.reveal-left.visible { opacity: 1; transform: translateX(0); }
+.reveal-right {
+    opacity: 0;
+    transform: translateX(60px);
+    transition: opacity 0.8s var(--transition), transform 0.8s var(--transition);
+}
+.reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+/* Stagger children */
+.stagger-children .reveal:nth-child(1) { transition-delay: 0s; }
+.stagger-children .reveal:nth-child(2) { transition-delay: 0.15s; }
+.stagger-children .reveal:nth-child(3) { transition-delay: 0.3s; }
+.stagger-children .reveal:nth-child(4) { transition-delay: 0.45s; }
+
+/* -------------------------------------------------------------------
+   HEADER / NAV
+------------------------------------------------------------------- */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.4s ease;
+    background: transparent;
+}
+header.scrolled {
+    background: rgba(26,26,26,0.97);
+    padding: 15px 50px;
+    box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+    backdrop-filter: blur(10px);
+}
+/* When urgency bar is visible, offset header */
+body:not(.scrolled-past-bar) header { top: 40px; }
+body.scrolled-past-bar header { top: 0; }
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 1px;
+}
+.logo span { color: var(--accent); }
+
+nav ul { display: flex; gap: 35px; align-items: center; }
+nav a {
+    color: rgba(255,255,255,0.8);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+    position: relative;
+}
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+}
+nav a:hover { color: var(--accent); }
+nav a:hover::after { width: 100%; }
+
+.nav-cta {
+    padding: 10px 22px !important;
+    border: 1px solid var(--accent) !important;
+    color: white !important;
+    font-size: 0.75rem !important;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+}
+.nav-cta::after { display: none; }
+.nav-cta:hover { background: var(--accent) !important; color: white !important; }
+
+/* Mobile menu button */
+.mobile-menu-btn {
+    display: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 200;
+    background: none;
+    border: none;
+    width: 30px;
+    height: 24px;
+    position: relative;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.mobile-menu-btn span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: white;
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+.mobile-menu-btn.active span:nth-child(1) { transform: rotate(45deg) translate(7px, 7px); }
+.mobile-menu-btn.active span:nth-child(2) { opacity: 0; }
+.mobile-menu-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(8px, -8px); }
+
+/* Mobile menu overlay */
+.mobile-nav {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(26,26,26,0.98);
+    z-index: 150;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+.mobile-nav.open { display: flex; opacity: 1; }
+.mobile-nav a {
+    color: white;
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    transition: color 0.3s;
+}
+.mobile-nav a:hover { color: var(--accent); }
+
+/* -------------------------------------------------------------------
+   HERO SECTION
+------------------------------------------------------------------- */
+.hero {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: #000;
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: url('https://images.unsplash.com/photo-1581858726768-758a030e9048?q=80&w=2080&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.55;
+    animation: zoomIn 25s infinite alternate;
+}
+@keyframes zoomIn { from { transform: scale(1); } to { transform: scale(1.12); } }
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    color: white;
+    max-width: 900px;
+    padding: 20px;
+}
+
+.hero-subtitle {
+    display: inline-block;
+    font-size: 0.85rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    color: var(--accent);
+    font-weight: 700;
+    opacity: 0;
+    animation: fadeUp 1s 0.3s forwards;
+}
+
+.hero h1 {
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    margin-bottom: 30px;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    line-height: 1.1;
+    opacity: 0;
+    animation: fadeUp 1s 0.6s forwards;
+}
+
+.hero p {
+    font-size: 1.25rem;
+    margin-bottom: 45px;
+    color: rgba(255,255,255,0.9);
+    font-weight: 300;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0;
+    animation: fadeUp 1s 0.9s forwards;
+}
+
+.hero-btns {
+    opacity: 0;
+    animation: fadeUp 1s 1.2s forwards;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    color: rgba(255,255,255,0.5);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-align: center;
+    animation: bounce 2s infinite;
+}
+.scroll-indicator i { display: block; margin-top: 8px; font-size: 1rem; }
+
+@keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(10px); }
+}
+
+/* -------------------------------------------------------------------
+   ABOUT / INTRO
+------------------------------------------------------------------- */
+.intro { background: white; }
+.intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.intro-img {
+    position: relative;
+    height: 550px;
+}
+.intro-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+}
+.intro-badge {
+    position: absolute;
+    bottom: -30px;
+    right: -30px;
+    background: var(--primary);
+    color: var(--accent);
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+.intro-badge .number { font-size: 3rem; font-weight: 700; line-height: 1; display: block; }
+.intro-badge .text { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+
+.intro-text h2 { font-size: 2.8rem; margin-bottom: 25px; color: var(--primary); }
+.intro-text p { margin-bottom: 25px; color: #555; font-size: 1.1rem; }
+
+.signature {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.signature-name { display: block; font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; }
+.signature-title { font-size: 0.85rem; color: #888; }
+
+/* -------------------------------------------------------------------
+   SERVICES
+------------------------------------------------------------------- */
+.services { background: #f8f8f8; }
+.section-header { margin-bottom: 60px; text-align: center; }
+.section-header h2 { font-size: 3rem; margin-bottom: 10px; }
+.section-header .divider { height: 3px; width: 60px; background: var(--accent); margin: 15px auto 0; }
+.section-header p { margin-top: 15px; color: #777; font-size: 1.1rem; }
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    background: white;
+    padding: 45px 35px;
+    border-bottom: 3px solid transparent;
+    transition: all 0.4s ease;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    position: relative;
+    overflow: hidden;
+}
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background: linear-gradient(180deg, rgba(197,160,89,0.05) 0%, transparent 100%);
+    transition: height 0.4s ease;
+}
+.service-card:hover::before { height: 100%; }
+.service-card:hover {
+    border-bottom-color: var(--accent);
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+}
+.service-icon { font-size: 2.5rem; color: var(--accent); margin-bottom: 25px; }
+.service-card h3 { font-size: 1.4rem; margin-bottom: 15px; }
+.service-card p { color: #777; font-size: 0.95rem; line-height: 1.8; }
+
+/* -------------------------------------------------------------------
+   PROCESS SECTION
+------------------------------------------------------------------- */
+.process { background: white; }
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    margin-top: 60px;
+}
+.process-step {
+    text-align: center;
+    position: relative;
+}
+.process-step::after {
+    content: '';
+    position: absolute;
+    top: 35px;
+    right: -20px;
+    width: 40px;
+    height: 2px;
+    background: var(--accent);
+}
+.process-step:last-child::after { display: none; }
+
+.step-number {
+    display: inline-flex;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: var(--accent);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.process-step h4 { font-size: 1.15rem; margin-bottom: 10px; }
+.process-step p { color: #777; font-size: 0.9rem; }
+
+/* -------------------------------------------------------------------
+   GALLERY
+------------------------------------------------------------------- */
+.gallery { padding-bottom: 0; }
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 300px;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+.gallery-item:hover img { transform: scale(1.1); }
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: 0.4s;
+}
+.gallery-item:hover .overlay { opacity: 1; }
+.overlay-content { text-align: center; color: white; transform: translateY(20px); transition: 0.4s; }
+.gallery-item:hover .overlay-content { transform: translateY(0); }
+.overlay h4 { font-size: 1.4rem; margin-bottom: 5px; color: var(--accent); }
+.overlay span { font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; }
+
+.gallery-item:nth-child(1),
+.gallery-item:nth-child(6) { grid-column: span 2; }
+
+/* -------------------------------------------------------------------
+   CTA / CONTACT SECTION
+------------------------------------------------------------------- */
+.cta-section {
+    background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)),
+                url('https://images.unsplash.com/photo-1615873968403-89e068629265?q=80&w=1932&auto=format&fit=crop');
+    background-size: cover;
+    background-attachment: fixed;
+    color: white;
+    text-align: center;
+}
+.cta-box { max-width: 900px; margin: 0 auto; }
+.cta-box h2 { font-size: clamp(2.5rem, 5vw, 3.5rem); margin-bottom: 20px; }
+.cta-box > p { font-size: 1.25rem; opacity: 0.9; margin-bottom: 40px; }
+
+.form-container {
+    background: white;
+    padding: 50px;
+    border-radius: 4px;
+    text-align: left;
+    color: #333;
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 1rem;
+    background: #fafafa;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(197,160,89,0.15);
+}
+
+.form-submit-btn {
+    width: 100%;
+    padding: 18px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    margin-top: 5px;
+}
+.form-submit-btn:hover { background: var(--accent-hover); transform: translateY(-2px); }
+
+/* Form success state */
+.form-success {
+    position: absolute;
+    inset: 0;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    padding: 40px;
+    text-align: center;
+}
+.form-success.show { opacity: 1; pointer-events: auto; }
+.form-success .check-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    transform: scale(0);
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s;
+}
+.form-success.show .check-circle { transform: scale(1); }
+.form-success .check-circle i { color: white; font-size: 2rem; }
+.form-success h3 { font-size: 1.8rem; margin-bottom: 10px; color: var(--primary); }
+.form-success p { color: #777; font-size: 1rem; }
+
+.testimonial-quote {
+    margin-top: 40px;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.4rem;
+    color: rgba(255,255,255,0.9);
+}
+.testimonial-author {
+    font-family: 'Lato', sans-serif;
+    font-style: normal;
+    font-size: 0.85rem;
+    color: var(--accent);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+    margin-top: 10px;
+}
+
+/* -------------------------------------------------------------------
+   FOOTER
+------------------------------------------------------------------- */
+footer {
+    background: var(--primary);
+    color: rgba(255,255,255,0.4);
+    padding: 80px 0 30px;
+    font-size: 0.9rem;
+}
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 60px;
+}
+.footer-col h4 { color: white; margin-bottom: 25px; font-size: 1.2rem; }
+.footer-col p { margin-bottom: 12px; }
+.footer-col a { transition: color 0.3s; }
+.footer-col a:hover { color: var(--accent); }
+.footer-col ul li { margin-bottom: 10px; }
+.footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: white;
+    display: block;
+    margin-bottom: 20px;
+}
+.footer-logo span { color: var(--accent); }
+.footer-socials { margin-top: 20px; display: flex; gap: 15px; }
+.footer-socials a {
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.5);
+    font-size: 0.9rem;
+    transition: all 0.3s;
+}
+.footer-socials a:hover { border-color: var(--accent); color: var(--accent); }
+
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.footer-bottom a { color: var(--accent); font-weight: 700; }
+
+/* -------------------------------------------------------------------
+   SMOOTH SCROLL
+------------------------------------------------------------------- */
+html { scroll-behavior: smooth; }
+
+/* -------------------------------------------------------------------
+   MOBILE RESPONSIVENESS
+------------------------------------------------------------------- */
+/* -------------------------------------------------------------------
+   TRUST BAR
+------------------------------------------------------------------- */
+.trust-bar {
+    background: white;
+    border-bottom: 1px solid #eee;
+    padding: 25px 0;
+    position: relative;
+    z-index: 5;
+}
+.trust-bar-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+.trust-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.trust-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+.trust-text { font-size: 0.85rem; line-height: 1.3; }
+.trust-text strong { display: block; color: var(--primary); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.75rem; }
+.trust-text span { color: #777; font-size: 0.8rem; }
+
+/* -------------------------------------------------------------------
+   TESTIMONIAL CAROUSEL
+------------------------------------------------------------------- */
+.testimonials {
+    background: var(--primary);
+    padding: 100px 0;
+    overflow: hidden;
+    position: relative;
+}
+.testimonials-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+.testimonials-header .label {
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 12px;
+}
+.testimonials-header h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: white;
+}
+
+.carousel-viewport {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    padding: 0 30px;
+}
+.carousel-track {
+    display: flex;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.testimonial-slide {
+    min-width: 100%;
+    padding: 0 20px;
+    text-align: center;
+}
+.testimonial-stars {
+    color: var(--accent);
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+    letter-spacing: 4px;
+}
+.testimonial-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+    color: rgba(255,255,255,0.9);
+    font-style: italic;
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+.testimonial-author-name {
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    display: block;
+    margin-bottom: 3px;
+}
+.testimonial-author-detail {
+    color: var(--accent);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+.testimonial-project {
+    display: inline-block;
+    margin-top: 12px;
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.5);
+    padding: 5px 15px;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-radius: 20px;
+}
+
+/* Carousel controls */
+.carousel-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 40px;
+}
+.carousel-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: transparent;
+    color: rgba(255,255,255,0.6);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.carousel-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+.carousel-dots {
+    display: flex;
+    gap: 8px;
+}
+.carousel-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    padding: 0;
+}
+.carousel-dot.active { background: var(--accent); transform: scale(1.2); }
+
+/* -------------------------------------------------------------------
+   FLOATING MOBILE CTA
+------------------------------------------------------------------- */
+.floating-cta {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 90;
+    padding: 12px 20px;
+    background: rgba(26,26,26,0.97);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(197,160,89,0.3);
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+}
+.floating-cta.show { transform: translateY(0); }
+.floating-cta-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+.floating-cta-text {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+.floating-cta-text strong { color: var(--accent); display: block; font-size: 0.85rem; }
+.floating-cta-btn {
+    display: inline-block;
+    padding: 14px 30px;
+    background: var(--accent);
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.75rem;
+    border-radius: 3px;
+    white-space: nowrap;
+    transition: background 0.3s;
+    flex-shrink: 0;
+}
+.floating-cta-btn:hover { background: var(--accent-hover); }
+
+/* -------------------------------------------------------------------
+   RESPONSIVE
+------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+    .intro-grid { grid-template-columns: 1fr; gap: 50px; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .intro-img { order: -1; }
+    .intro-badge { right: 0; }
+    .process-grid { grid-template-columns: repeat(2, 1fr); }
+    .process-step::after { display: none; }
+}
+
+@media (max-width: 768px) {
+    .urgency-bar { font-size: 0.65rem; padding: 8px 10px; letter-spacing: 1px; }
+    header { padding: 15px 20px; }
+    header.scrolled { padding: 12px 20px; }
+    nav { display: none; }
+    .mobile-menu-btn { display: flex; }
+
+    .hero h1 { font-size: 2.5rem; }
+    .hero p { font-size: 1.05rem; }
+    .hero-btns { flex-direction: column; align-items: center; }
+    .hero-btns .btn { width: 80%; text-align: center; }
+
+    .section-padding { padding: 60px 0; }
+    .section-header h2 { font-size: 2.2rem; }
+
+    .gallery-grid { grid-template-columns: 1fr; }
+    .gallery-item { grid-column: span 1 !important; height: 280px; }
+
+    .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+    .form-grid { grid-template-columns: 1fr; }
+    .form-container { padding: 30px; }
+
+    .process-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+    .cta-section { background-attachment: scroll; }
+
+    .trust-bar-inner { flex-wrap: wrap; gap: 20px; justify-content: center; }
+    .trust-item { flex: 0 0 auto; }
+    .testimonials { padding: 60px 0; }
+
+    .floating-cta { display: block; }
+    body { padding-bottom: 70px; }
+}
+
+@media (max-width: 480px) {
+    .process-grid { grid-template-columns: 1fr; }
+    .intro-img { height: 350px; }
+    .intro-badge { padding: 25px; bottom: -20px; right: 10px; }
+    .intro-badge .number { font-size: 2rem; }
+    .trust-item { flex: 1 1 45%; min-width: 140px; }
+}
+</style>
+</head>
+<body>
+
+    <div class="urgency-bar">Limited Openings for Luxury Vinyl Projects in Tampa — March 2026</div>
+
+    <!-- Header -->
+    <header id="mainHeader">
+        <a href="erickson_flooring.html" class="logo">Erickson <span>Flooring</span></a>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="erickson_story.html">Our Story</a></li>
+                <li><a href="craftsmanship.html">Craftsmanship</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="contact.html" class="nav-cta">Get Quote</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+            </ul>
+        </nav>
+        <button class="mobile-menu-btn" id="menuBtn" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
+
+    <!-- Mobile Nav -->
+    <div class="mobile-nav" id="mobileNav">
+        <a href="#home" onclick="closeMenu()">Home</a>
+        <a href="erickson_story.html">Our Story</a>
+        <a href="craftsmanship.html">Craftsmanship</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="contact.html">Get Quote</a>
+        <a href="faq.html">FAQ</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <span class="hero-subtitle">Tampa's Luxury Vinyl Authority</span>
+            <h1>Vinyl, Perfected<br>For a Lifetime.</h1>
+            <p>Master-level Luxury Vinyl Plank installation with architectural precision. The Chicago Standard of craftsmanship, delivered to Tampa's finest homes.</p>
+            <div class="hero-btns">
+                <a href="#services" class="btn btn-filled">Our Craftsmanship</a>
+                <a href="#contact" class="btn" style="color: white;">Request a Quote</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            Scroll to explore
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Trust Bar -->
+    <div class="trust-bar">
+        <div class="trust-bar-inner">
+            <div class="trust-item">
+                <div class="trust-icon"><i class="fas fa-shield-halved"></i></div>
+                <div class="trust-text">
+                    <strong>Licensed & Insured</strong>
+                    <span>Full coverage for your peace of mind</span>
+                </div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon"><i class="fas fa-handshake"></i></div>
+                <div class="trust-text">
+                    <strong>Free Consultation</strong>
+                    <span>In-home assessment, no obligation</span>
+                </div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon"><i class="fas fa-medal"></i></div>
+                <div class="trust-text">
+                    <strong>100% Satisfaction</strong>
+                    <span>We don't leave until you approve</span>
+                </div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon"><i class="fas fa-clock"></i></div>
+                <div class="trust-text">
+                    <strong>24-Hour Response</strong>
+                    <span>Quote delivered within one day</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Intro / About Section -->
+    <section class="section-padding intro" id="about">
+        <div class="container">
+            <div class="intro-grid">
+                <div class="intro-text reveal-left">
+                    <span class="gold-text" style="font-weight: 700; text-transform: uppercase; letter-spacing: 3px; font-size: 0.85rem;">The Erickson Standard</span>
+                    <h2>Built on Precision.<br>Driven by Passion.</h2>
+                    <p>Erickson Flooring was founded on a simple premise: flooring isn't just a surface — it's the foundation of your home's character. Born in Chicago and refined in Tampa, we bring an obsessive attention to detail that transforms luxury vinyl from a material into an experience.</p>
+                    <p>We specialize exclusively in Luxury Vinyl Plank. Why? Because mastery requires focus. By dedicating ourselves to one craft, we've perfected the techniques required to make LVP look and feel indistinguishable from solid wood — with durability that outlasts them all.</p>
+                    <div class="signature">
+                        <div>
+                            <span class="signature-name">Erickson Flooring</span>
+                            <span class="signature-title">Founder & Lead Craftsman</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="intro-img reveal-right">
+                    <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=2069&auto=format&fit=crop" alt="Luxury vinyl plank installation">
+                    <div class="intro-badge">
+                        <span class="number">100%</span>
+                        <span class="text">Satisfaction<br>Guarantee</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section-padding services" id="services">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>The Gold Standard in Vinyl</h2>
+                <div class="divider"></div>
+                <p>Exclusively specializing in Luxury Vinyl Plank — perfected through obsession.</p>
+            </div>
+
+            <div class="services-grid stagger-children">
+                <div class="service-card reveal">
+                    <div class="service-icon"><i class="fas fa-home"></i></div>
+                    <h3>Full-Home LVP Install</h3>
+                    <p>Transform every room with premium wide-plank luxury vinyl. We handle everything from subfloor preparation to flawless transitions between spaces.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon"><i class="fas fa-ruler-combined"></i></div>
+                    <h3>Custom Patterns & Layouts</h3>
+                    <p>Herringbone, chevron, and mixed-width designs that elevate vinyl from flooring to art. Complex patterns require a master's touch — and that's what we deliver.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon"><i class="fas fa-stairs"></i></div>
+                    <h3>Staircase Transformations</h3>
+                    <p>Staircases are where average installers fail. We specialize in precision-wrapped treads and risers that create a seamless flow from floor to flight.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon"><i class="fas fa-building"></i></div>
+                    <h3>Commercial Spaces</h3>
+                    <p>High-traffic LVP installations built for longevity. Offices, retail, and hospitality spaces deserve the same precision we bring to every home.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="section-padding process" id="process">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Our Process</h2>
+                <div class="divider"></div>
+                <p>The Chicago Standard — from consultation to completion.</p>
+            </div>
+            <div class="process-grid stagger-children">
+                <div class="process-step reveal">
+                    <div class="step-number">01</div>
+                    <h4>Consultation</h4>
+                    <p>We visit your space, assess the subfloor, and understand your vision down to the last detail.</p>
+                </div>
+                <div class="process-step reveal">
+                    <div class="step-number">02</div>
+                    <h4>Preparation</h4>
+                    <p>We spend nearly half our time here — grinding, leveling, and perfecting what lies beneath.</p>
+                </div>
+                <div class="process-step reveal">
+                    <div class="step-number">03</div>
+                    <h4>Installation</h4>
+                    <p>Millimeter-precision cuts. Seamless transitions. Every plank placed with surgical care.</p>
+                </div>
+                <div class="process-step reveal">
+                    <div class="step-number">04</div>
+                    <h4>Walk-Through</h4>
+                    <p>We don't leave until you've inspected every inch and given your stamp of approval.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <div class="section-header reveal" style="padding: 100px 0 60px;">
+            <h2>The Portfolio</h2>
+            <div class="divider"></div>
+            <p style="margin-top: 15px; color: #777;">Every project tells a story of precision and care.</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1584622050111-993a426fbf0a?q=80&w=2070&auto=format&fit=crop" alt="Living Room LVP">
+                <div class="overlay">
+                    <div class="overlay-content">
+                        <h4>Modern Farmhouse</h4>
+                        <span>Wide Plank LVP | Full Home</span>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2000&auto=format&fit=crop" alt="Kitchen">
+                <div class="overlay">
+                    <div class="overlay-content">
+                        <h4>Estate Kitchen</h4>
+                        <span>Stone-Look LVP</span>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4f9d?q=80&w=2070&auto=format&fit=crop" alt="Hallway">
+                <div class="overlay">
+                    <div class="overlay-content">
+                        <h4>The Corridor</h4>
+                        <span>Herringbone Vinyl</span>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1617806118233-18e1de247200?q=80&w=1932&auto=format&fit=crop" alt="Bathroom">
+                <div class="overlay">
+                    <div class="overlay-content">
+                        <h4>Master Bath</h4>
+                        <span>Waterproof Rigid-Core LVP</span>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?q=80&w=2069&auto=format&fit=crop" alt="Bedroom">
+                <div class="overlay">
+                    <div class="overlay-content">
+                        <h4>Urban Loft</h4>
+                        <span>Walnut-Tone SPC Plank</span>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" alt="Staircase">
+                <div class="overlay">
+                    <div class="overlay-content">
+                        <h4>Custom Staircase</h4>
+                        <span>LVP Tread Wrapping</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Carousel -->
+    <section class="testimonials">
+        <div class="testimonials-header reveal">
+            <span class="label">Client Stories</span>
+            <h2>What Tampa Homeowners Say</h2>
+        </div>
+        <div class="carousel-viewport">
+            <div class="carousel-track" id="carouselTrack">
+                <div class="testimonial-slide">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Our friends literally can't believe it's vinyl. They keep touching the floor and asking where we got our hardwood installed. The craftsmanship is unreal."</p>
+                    <span class="testimonial-author-name">Sarah & Michael R.</span>
+                    <span class="testimonial-author-detail">Bayshore Boulevard, Tampa</span>
+                    <span class="testimonial-project">Full Home — 2,800 Sq Ft</span>
+                </div>
+                <div class="testimonial-slide">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"I've had three flooring companies do work in previous homes. Erickson is in a completely different league. The subfloor prep alone was more thorough than entire installs I've paid for before."</p>
+                    <span class="testimonial-author-name">James T.</span>
+                    <span class="testimonial-author-detail">Hyde Park, Tampa</span>
+                    <span class="testimonial-project">Herringbone Pattern — 1,200 Sq Ft</span>
+                </div>
+                <div class="testimonial-slide">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"The staircase transformation was the moment I knew we hired the right person. Every step is wrapped so perfectly it looks like a single piece of wood. Absolutely flawless."</p>
+                    <span class="testimonial-author-name">Laura & David K.</span>
+                    <span class="testimonial-author-detail">South Tampa</span>
+                    <span class="testimonial-project">Staircase + Main Floor — 16 Steps</span>
+                </div>
+                <div class="testimonial-slide">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"I cook every single day and drop things constantly. After a full year of abuse, this floor looks exactly like the day it was installed. Best investment we made in our kitchen."</p>
+                    <span class="testimonial-author-name">Dilan K.</span>
+                    <span class="testimonial-author-detail">Davis Islands, Tampa</span>
+                    <span class="testimonial-project">Kitchen Remodel — 450 Sq Ft</span>
+                </div>
+                <div class="testimonial-slide">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"We run a fitness studio — the floor takes an absolute beating every day. It still looks brand new. Erickson didn't just install a floor, he built a foundation we can trust."</p>
+                    <span class="testimonial-author-name">Alex M.</span>
+                    <span class="testimonial-author-detail">Channelside, Tampa</span>
+                    <span class="testimonial-project">Commercial — 3,200 Sq Ft</span>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-controls">
+            <button class="carousel-btn" id="carouselPrev"><i class="fas fa-arrow-left"></i></button>
+            <div class="carousel-dots" id="carouselDots">
+                <button class="carousel-dot active" data-index="0"></button>
+                <button class="carousel-dot" data-index="1"></button>
+                <button class="carousel-dot" data-index="2"></button>
+                <button class="carousel-dot" data-index="3"></button>
+                <button class="carousel-dot" data-index="4"></button>
+            </div>
+            <button class="carousel-btn" id="carouselNext"><i class="fas fa-arrow-right"></i></button>
+        </div>
+    </section>
+
+    <!-- CTA / Contact Section -->
+    <section class="section-padding cta-section" id="contact">
+        <div class="container">
+            <div class="cta-box reveal">
+                <h2>Ready to transform your home?</h2>
+                <p>Stop settling for "good enough." Get a quote from Tampa's most meticulous luxury vinyl specialists.</p>
+                
+                <div class="form-container">
+                    <form id="quoteForm">
+                        <div class="form-grid">
+                            <input type="text" placeholder="Full Name" required>
+                            <input type="email" placeholder="Email Address" required>
+                        </div>
+                        <input type="text" placeholder="Approximate Square Footage" style="margin-bottom: 20px;">
+                        <select style="margin-bottom: 20px;">
+                            <option>Type of Project...</option>
+                            <option>Full Home Vinyl Install</option>
+                            <option>Single Room / Kitchen</option>
+                            <option>Staircase Transformation</option>
+                            <option>Commercial Space</option>
+                            <option>Custom Pattern (Herringbone/Chevron)</option>
+                        </select>
+                        <button type="submit" class="form-submit-btn">Claim Your Free Quote</button>
+                    </form>
+                    <div class="form-success" id="formSuccess">
+                        <div class="check-circle"><i class="fas fa-check"></i></div>
+                        <h3>Thank You!</h3>
+                        <p>Your quote request has been received. We'll reach out within 24 hours to schedule your white-glove consultation.</p>
+                    </div>
+                </div>
+
+                <div class="testimonial-quote">
+                    "The best investment we made in our home."
+                    <span class="testimonial-author">— Dilan Kochhar, Tampa Resident</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <span class="footer-logo">Erickson <span>Flooring</span></span>
+                    <p>Setting the new standard in luxury vinyl flooring. Chicago-trained precision, delivered with Tampa warmth.</p>
+                    <div class="footer-socials">
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Houzz"><i class="fab fa-houzz"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <p>123 Craftsman Way<br>Tampa, FL 33602</p>
+                    <p>info@ericksonflooring.com</p>
+                    <p>(813) 555-0199</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#services">Full-Home LVP</a></li>
+                        <li><a href="#services">Custom Patterns</a></li>
+                        <li><a href="#services">Staircase Wrapping</a></li>
+                        <li><a href="#services">Commercial LVP</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Hours</h4>
+                    <p>Mon – Fri: 8am – 6pm</p>
+                    <p>Sat: 9am – 4pm</p>
+                    <p>Sun: By Appointment</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Erickson Flooring Inc. All Rights Reserved.</p>
+                <p>Designed by <a href="https://dilankochhar.com">Dilan Kochhar</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Mobile CTA -->
+    <div class="floating-cta" id="floatingCta">
+        <div class="floating-cta-inner">
+            <div class="floating-cta-text">
+                <strong>Free Quote</strong>
+                Limited March Availability
+            </div>
+            <a href="contact.html" class="floating-cta-btn">Get Quote</a>
+        </div>
+    </div>
+
+    <script>
+        // ===== MOBILE MENU =====
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('active');
+            mobileNav.classList.toggle('open');
+            document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+        });
+
+        function closeMenu() {
+            menuBtn.classList.remove('active');
+            mobileNav.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        // ===== STICKY HEADER =====
+        const header = document.getElementById('mainHeader');
+        const urgencyBar = document.querySelector('.urgency-bar');
+
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+
+            if (scrollY > 80) {
+                header.classList.add('scrolled');
+                document.body.classList.add('scrolled-past-bar');
+            } else {
+                header.classList.remove('scrolled');
+                document.body.classList.remove('scrolled-past-bar');
+            }
+        });
+
+        // ===== SCROLL REVEAL ANIMATIONS =====
+        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // ===== FORM SUBMISSION =====
+        const quoteForm = document.getElementById('quoteForm');
+        const formSuccess = document.getElementById('formSuccess');
+
+        quoteForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            formSuccess.classList.add('show');
+        });
+
+        // ===== SMOOTH SCROLL FOR ANCHOR LINKS =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    const headerOffset = 80;
+                    const elementPosition = target.getBoundingClientRect().top + window.scrollY;
+                    window.scrollTo({ top: elementPosition - headerOffset, behavior: 'smooth' });
+                }
+            });
+        });
+
+        // ===== TESTIMONIAL CAROUSEL =====
+        const track = document.getElementById('carouselTrack');
+        const dots = document.querySelectorAll('.carousel-dot');
+        const prevBtn = document.getElementById('carouselPrev');
+        const nextBtn = document.getElementById('carouselNext');
+        let currentSlide = 0;
+        const totalSlides = dots.length;
+        let autoplayTimer;
+
+        function goToSlide(index) {
+            currentSlide = index;
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            dots.forEach(d => d.classList.remove('active'));
+            dots[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            goToSlide((currentSlide + 1) % totalSlides);
+        }
+
+        function prevSlide() {
+            goToSlide((currentSlide - 1 + totalSlides) % totalSlides);
+        }
+
+        nextBtn.addEventListener('click', () => { nextSlide(); resetAutoplay(); });
+        prevBtn.addEventListener('click', () => { prevSlide(); resetAutoplay(); });
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => { goToSlide(parseInt(dot.dataset.index)); resetAutoplay(); });
+        });
+
+        function resetAutoplay() {
+            clearInterval(autoplayTimer);
+            autoplayTimer = setInterval(nextSlide, 5000);
+        }
+        autoplayTimer = setInterval(nextSlide, 5000);
+
+        // Touch swipe support
+        let touchStartX = 0;
+        const viewport = document.querySelector('.carousel-viewport');
+        viewport.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
+        viewport.addEventListener('touchend', (e) => {
+            const diff = touchStartX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) nextSlide(); else prevSlide();
+                resetAutoplay();
+            }
+        });
+
+        // ===== FLOATING MOBILE CTA =====
+        const floatingCta = document.getElementById('floatingCta');
+        let lastScrollY = 0;
+
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            // Show after scrolling past hero (past ~60% of viewport height)
+            if (scrollY > window.innerHeight * 0.6) {
+                floatingCta.classList.add('show');
+            } else {
+                floatingCta.classList.remove('show');
+            }
+            lastScrollY = scrollY;
+        });
+    </script>
+
+</body>
+</html>

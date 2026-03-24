@@ -3,223 +3,861 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio | Erickson Flooring Inc.</title>
+<title>The Portfolio | Erickson Flooring Inc.</title>
+<meta name="description" content="Explore luxury vinyl installations by Erickson Flooring — Tampa's most meticulous LVP specialist.">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
 <style>
-/* VARIABLES & RESET */
+/* -------------------------------------------------------------------
+   VARIABLES & RESET
+------------------------------------------------------------------- */
 :root {
     --primary: #1a1a1a;
     --accent: #c5a059;
+    --accent-hover: #b08d4b;
     --light: #f4f4f4;
+    --paper: #fdfbf7;
     --text-dark: #333;
+    --transition: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Lato', sans-serif; background-color: white; color: var(--text-dark); line-height: 1.7; }
-h1, h2, h3, h4 { font-family: 'Playfair Display', serif; font-weight: 700; color: var(--primary); }
+html { scroll-behavior: smooth; }
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: var(--paper);
+    color: var(--text-dark);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+h1, h2, h3, h4 { font-family: 'Playfair Display', serif; font-weight: 700; line-height: 1.2; }
 a { text-decoration: none; color: inherit; transition: 0.3s; }
-.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+ul { list-style: none; }
 
-/* NAV */
-header { background: var(--primary); padding: 20px 50px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
-.logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: white; letter-spacing: 1px; }
+/* URGENCY BAR */
+.urgency-bar {
+    background: var(--primary);
+    color: var(--accent);
+    text-align: center;
+    padding: 10px 0;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    position: relative;
+    z-index: 101;
+}
+
+/* -------------------------------------------------------------------
+   HEADER
+------------------------------------------------------------------- */
+header {
+    position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+    padding: 20px 50px;
+    display: flex; justify-content: space-between; align-items: center;
+    transition: all 0.4s ease; background: transparent;
+}
+header.scrolled {
+    background: rgba(26,26,26,0.97);
+    padding: 15px 50px;
+    box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+    backdrop-filter: blur(10px);
+}
+body:not(.scrolled-past-bar) header { top: 40px; }
+body.scrolled-past-bar header { top: 0; }
+
+.logo { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: white; letter-spacing: 1px; }
 .logo span { color: var(--accent); }
-nav ul { display: flex; gap: 30px; }
-nav a { color: rgba(255,255,255,0.7); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
-nav a:hover, nav a.active { color: var(--accent); }
+nav ul { display: flex; gap: 35px; align-items: center; }
+nav a { color: rgba(255,255,255,0.8); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; position: relative; }
+nav a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--accent); transition: width 0.3s ease; }
+nav a:hover { color: var(--accent); }
+nav a:hover::after { width: 100%; }
+nav a.active { color: var(--accent); }
+nav a.active::after { width: 100%; }
+.nav-cta { padding: 10px 22px !important; border: 1px solid var(--accent) !important; font-size: 0.75rem !important; letter-spacing: 2px; }
+.nav-cta::after { display: none; }
+.nav-cta:hover { background: var(--accent) !important; color: white !important; }
 
-/* HEADER */
-.page-header { background: #f4f4f4; padding: 80px 0; text-align: center; border-bottom: 1px solid #e0e0e0; }
-.page-header h1 { font-size: 3.5rem; margin-bottom: 10px; }
-.page-header p { font-size: 1.1rem; color: #666; max-width: 600px; margin: 0 auto; }
+.mobile-menu-btn {
+    display: none; color: white; cursor: pointer; z-index: 200;
+    background: none; border: none; width: 30px; height: 24px;
+    flex-direction: column; justify-content: space-between;
+}
+.mobile-menu-btn span { display: block; width: 100%; height: 2px; background: white; transition: all 0.3s ease; transform-origin: center; }
+.mobile-menu-btn.active span:nth-child(1) { transform: rotate(45deg) translate(7px, 7px); }
+.mobile-menu-btn.active span:nth-child(2) { opacity: 0; }
+.mobile-menu-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(8px, -8px); }
 
-/* TRANSFORMATION (Before/After) */
-.transformation-section { padding: 80px 0; }
-.comparison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; }
+.mobile-nav {
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+    background: rgba(26,26,26,0.98); z-index: 150;
+    flex-direction: column; justify-content: center; align-items: center; gap: 30px;
+    opacity: 0; transition: opacity 0.4s ease;
+}
+.mobile-nav.open { display: flex; opacity: 1; }
+.mobile-nav a { color: white; font-family: 'Playfair Display', serif; font-size: 2rem; }
+.mobile-nav a:hover { color: var(--accent); }
 
-.ba-slider { position: relative; width: 100%; height: 400px; overflow: hidden; cursor: col-resize; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-.ba-slider img { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; }
-.ba-slider .after-img { z-index: 1; }
-.ba-slider .before-img { z-index: 2; width: 50%; border-right: 3px solid var(--accent); }
-.handle { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 40px; height: 40px; background: var(--accent); border-radius: 50%; z-index: 3; display: flex; align-items: center; justify-content: center; color: white; box-shadow: 0 0 10px rgba(0,0,0,0.3); pointer-events: none; }
+/* -------------------------------------------------------------------
+   ANIMATIONS
+------------------------------------------------------------------- */
+.reveal { opacity: 0; transform: translateY(50px); transition: opacity 0.9s var(--transition), transform 0.9s var(--transition); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes zoomIn { from { transform: scale(1); } to { transform: scale(1.08); } }
+@keyframes lineGrow { from { width: 0; } to { width: 80px; } }
 
-.case-study { margin-top: 20px; }
-.case-study h3 { font-size: 1.5rem; margin-bottom: 5px; }
-.case-study .meta { font-size: 0.85rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; display: block; }
+/* -------------------------------------------------------------------
+   HERO
+------------------------------------------------------------------- */
+.portfolio-hero {
+    position: relative;
+    height: 80vh;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; background: #000; overflow: hidden;
+}
+.portfolio-hero-bg {
+    position: absolute; inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop');
+    background-size: cover; background-position: center;
+    opacity: 0.4; animation: zoomIn 25s infinite alternate;
+}
+.portfolio-hero-content { position: relative; z-index: 2; color: white; max-width: 800px; padding: 0 20px; }
+.portfolio-hero-label {
+    display: inline-block; font-size: 0.8rem; letter-spacing: 6px; text-transform: uppercase;
+    margin-bottom: 25px; color: var(--accent); font-weight: 700; opacity: 0; animation: fadeUp 1s 0.3s forwards;
+}
+.portfolio-hero h1 {
+    font-size: clamp(3rem, 6vw, 5rem); margin-bottom: 25px; color: white; line-height: 1.05;
+    opacity: 0; animation: fadeUp 1s 0.6s forwards;
+}
+.portfolio-hero h1 em { font-style: italic; color: var(--accent); }
+.hero-line { width: 0; height: 2px; background: var(--accent); margin: 25px auto; animation: lineGrow 1.2s 1s forwards; }
+.portfolio-hero p { font-size: 1.2rem; font-weight: 300; color: rgba(255,255,255,0.85); opacity: 0; animation: fadeUp 1s 0.9s forwards; }
+.portfolio-hero .project-count {
+    display: inline-block; margin-top: 30px;
+    font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; color: var(--accent);
+    font-weight: 700; opacity: 0; animation: fadeUp 1s 1.2s forwards;
+}
 
-/* GALLERY GRID */
-.gallery-section { padding: 80px 0; background: #fafafa; }
-.filter-bar { text-align: center; margin-bottom: 40px; }
-.filter-btn { background: none; border: none; padding: 10px 20px; margin: 0 5px; font-family: 'Playfair Display', serif; font-size: 1.1rem; cursor: pointer; color: #888; transition: 0.3s; }
-.filter-btn.active, .filter-btn:hover { color: var(--primary); border-bottom: 2px solid var(--accent); }
+/* -------------------------------------------------------------------
+   FILTER BAR
+------------------------------------------------------------------- */
+.filter-bar {
+    background: white;
+    padding: 25px 0;
+    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 75px;
+    z-index: 50;
+    transition: top 0.3s;
+}
+body:not(.scrolled-past-bar) .filter-bar { top: 115px; }
+.filter-bar-inner {
+    max-width: 1200px; margin: 0 auto; padding: 0 30px;
+    display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;
+}
+.filter-btn {
+    padding: 10px 25px;
+    background: transparent;
+    border: 1px solid #ddd;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #666;
+    border-radius: 2px;
+}
+.filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+.filter-btn.active { background: var(--primary); color: var(--accent); border-color: var(--primary); }
 
-.project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-.project-item { position: relative; height: 350px; overflow: hidden; cursor: pointer; }
-.project-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
-.project-item:hover img { transform: scale(1.05); }
-.project-info { position: absolute; bottom: 0; left: 0; width: 100%; padding: 20px; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white; opacity: 0; transition: 0.4s; transform: translateY(10px); }
-.project-item:hover .project-info { opacity: 1; transform: translateY(0); }
+/* -------------------------------------------------------------------
+   BEFORE/AFTER SECTION
+------------------------------------------------------------------- */
+.ba-section {
+    padding: 100px 0 60px;
+    background: var(--paper);
+}
+.ba-header {
+    text-align: center; margin-bottom: 60px;
+}
+.ba-header .label { font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; color: var(--accent); font-weight: 700; display: block; margin-bottom: 12px; }
+.ba-header h2 { font-size: clamp(2rem, 4vw, 3rem); color: var(--primary); margin-bottom: 10px; }
+.ba-header p { color: #777; font-size: 1.05rem; }
 
-/* FOOTER */
-footer { background: var(--primary); color: rgba(255,255,255,0.4); padding: 40px; text-align: center; font-size: 0.8rem; }
+.ba-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+.ba-slider {
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 4px;
+    cursor: ew-resize;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+}
+.ba-slider img {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;
+    pointer-events: none; user-select: none;
+}
+.ba-slider .ba-after { clip-path: inset(0 0 0 50%); }
+.ba-slider .ba-handle {
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 50%;
+    width: 4px;
+    background: var(--accent);
+    transform: translateX(-50%);
+    z-index: 5;
+    transition: none;
+}
+.ba-slider .ba-handle::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 3px 15px rgba(0,0,0,0.3);
+}
+.ba-slider .ba-handle::after {
+    content: '\f0d9  \f0da';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 0.8rem;
+    z-index: 6;
+    letter-spacing: 6px;
+}
+.ba-label {
+    position: absolute;
+    bottom: 15px;
+    padding: 6px 16px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    z-index: 4;
+    pointer-events: none;
+}
+.ba-label-before { left: 15px; background: rgba(0,0,0,0.7); color: white; }
+.ba-label-after { right: 15px; background: var(--accent); color: white; }
+
+/* -------------------------------------------------------------------
+   CASE STUDY CARDS
+------------------------------------------------------------------- */
+.cases-section {
+    padding: 80px 0 120px;
+    background: var(--paper);
+}
+.cases-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+.cases-header .label { font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; color: var(--accent); font-weight: 700; display: block; margin-bottom: 12px; }
+.cases-header h2 { font-size: clamp(2rem, 4vw, 3rem); color: var(--primary); }
+
+.case-card {
+    max-width: 1200px;
+    margin: 0 auto 80px;
+    padding: 0 30px;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 50px;
+    align-items: start;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.case-card:last-child { margin-bottom: 0; }
+.case-card:nth-child(even) { direction: rtl; }
+.case-card:nth-child(even) > * { direction: ltr; }
+
+/* Case hero image */
+.case-hero {
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    box-shadow: 0 25px 70px rgba(0,0,0,0.12);
+}
+.case-hero img {
+    width: 100%; height: 500px; object-fit: cover;
+    transition: transform 0.6s ease;
+}
+.case-hero:hover img { transform: scale(1.04); }
+.case-hero .case-badge {
+    position: absolute; top: 20px; left: 20px;
+    background: var(--accent); color: white;
+    padding: 8px 18px;
+    font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;
+}
+
+/* Case gallery thumbnails */
+.case-thumbs {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+    margin-top: 12px;
+}
+.case-thumbs img {
+    width: 100%; height: 110px; object-fit: cover; border-radius: 3px;
+    cursor: pointer; transition: all 0.3s ease; opacity: 0.7;
+}
+.case-thumbs img:hover { opacity: 1; transform: scale(1.03); }
+
+/* Case details */
+.case-details {
+    padding: 20px 0;
+}
+.case-details .case-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    color: rgba(197,160,89,0.15);
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 5px;
+}
+.case-details h3 { font-size: 2.2rem; margin-bottom: 15px; color: var(--primary); }
+.case-details .case-location {
+    font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); font-weight: 700;
+    margin-bottom: 20px; display: block;
+}
+.case-details .case-desc {
+    font-size: 1.05rem; color: #555; line-height: 1.9; margin-bottom: 25px;
+}
+
+/* Specs grid */
+.case-specs {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 15px;
+    padding: 25px; background: white;
+    border-radius: 4px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+.spec-item { }
+.spec-item .spec-label {
+    font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1.5px;
+    color: #aaa; font-weight: 700; display: block; margin-bottom: 3px;
+}
+.spec-item .spec-value { font-size: 1rem; font-weight: 700; color: var(--primary); }
+
+/* Testimonial in case */
+.case-testimonial {
+    margin-top: 25px;
+    padding: 20px 25px;
+    border-left: 3px solid var(--accent);
+    background: white;
+    border-radius: 0 4px 4px 0;
+}
+.case-testimonial p {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--primary);
+    line-height: 1.7;
+    margin-bottom: 8px;
+}
+.case-testimonial cite {
+    font-family: 'Lato', sans-serif;
+    font-style: normal;
+    font-size: 0.8rem;
+    color: var(--accent);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Filter hide/show */
+.case-card.hidden {
+    display: none;
+}
+
+/* -------------------------------------------------------------------
+   LIGHTBOX
+------------------------------------------------------------------- */
+.lightbox {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.92);
+    z-index: 1000;
+    justify-content: center; align-items: center;
+    backdrop-filter: blur(5px);
+}
+.lightbox.open { display: flex; }
+.lightbox img {
+    max-width: 90%; max-height: 85vh; object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+    animation: fadeUp 0.4s forwards;
+}
+.lightbox-close {
+    position: absolute; top: 30px; right: 40px;
+    color: white; font-size: 2rem; cursor: pointer;
+    background: none; border: none;
+    transition: color 0.3s;
+}
+.lightbox-close:hover { color: var(--accent); }
+
+/* -------------------------------------------------------------------
+   FINAL CTA
+------------------------------------------------------------------- */
+.portfolio-cta {
+    text-align: center;
+    padding: 120px 0;
+    background: var(--primary);
+    position: relative;
+    overflow: hidden;
+}
+.portfolio-cta::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(197,160,89,0.08) 0%, transparent 70%);
+}
+.portfolio-cta h2 {
+    font-size: clamp(2.5rem, 4.5vw, 3.5rem);
+    color: white; margin-bottom: 20px; position: relative;
+}
+.portfolio-cta p {
+    font-size: 1.2rem; color: rgba(255,255,255,0.6); max-width: 550px;
+    margin: 0 auto 40px; position: relative;
+}
+.btn-gold {
+    display: inline-block; padding: 20px 55px;
+    background: var(--accent); color: white;
+    font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem;
+    box-shadow: 0 10px 40px rgba(197,160,89,0.3); transition: all 0.4s ease;
+    position: relative;
+}
+.btn-gold:hover { background: var(--accent-hover); transform: translateY(-4px); box-shadow: 0 20px 50px rgba(197,160,89,0.35); }
+
+/* -------------------------------------------------------------------
+   FOOTER
+------------------------------------------------------------------- */
+footer {
+    background: var(--primary); color: rgba(255,255,255,0.4);
+    padding: 40px 0; text-align: center; font-size: 0.85rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+footer a { color: var(--accent); font-weight: 700; }
+
+/* -------------------------------------------------------------------
+   MOBILE
+------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+    .case-card { grid-template-columns: 1fr; }
+    .case-card:nth-child(even) { direction: ltr; }
+    .case-hero img { height: 400px; }
+    .ba-grid { grid-template-columns: 1fr; }
+    .ba-slider { height: 350px; }
+}
 
 @media (max-width: 768px) {
-    .comparison-grid { grid-template-columns: 1fr; }
-    .project-grid { grid-template-columns: 1fr; }
+    .urgency-bar { font-size: 0.65rem; padding: 8px 10px; letter-spacing: 1px; }
+    header { padding: 15px 20px; }
+    header.scrolled { padding: 12px 20px; }
     nav { display: none; }
+    .mobile-menu-btn { display: flex; }
+
+    .portfolio-hero { height: 65vh; }
+    .portfolio-hero h1 { font-size: 2.5rem; }
+
+    .filter-bar { top: 55px; }
+    body:not(.scrolled-past-bar) .filter-bar { top: 93px; }
+    .filter-btn { padding: 8px 16px; font-size: 0.7rem; }
+
+    .ba-section { padding: 60px 0 40px; }
+    .ba-slider { height: 280px; }
+
+    .cases-section { padding: 40px 0 80px; }
+    .case-card { padding: 0 20px; gap: 30px; margin-bottom: 60px; }
+    .case-hero img { height: 300px; }
+    .case-details .case-number { font-size: 3rem; }
+    .case-details h3 { font-size: 1.8rem; }
+    .case-thumbs img { height: 80px; }
+    .case-specs { grid-template-columns: 1fr; }
+
+    .portfolio-cta { padding: 70px 20px; }
+    .portfolio-cta h2 { font-size: 2.2rem; }
 }
 </style>
 </head>
 <body>
 
-<header>
-    <div class="logo">Erickson <span>Flooring</span></div>
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="our-story.html">Our Story</a></li>
-            <li><a href="portfolio.html" class="active">Portfolio</a></li>
-            <li><a href="contact.html" style="border: 1px solid var(--accent); padding: 8px 15px;">Get Quote</a></li>
-        </ul>
-    </nav>
-</header>
+    <div class="urgency-bar">Limited Openings for Luxury Vinyl Projects in Tampa — March 2026</div>
 
-<div class="page-header">
-    <div class="container">
-        <h1>Transformations</h1>
-        <p>We don't just install floors; we change the entire atmosphere of a room. Drag the slider to see the Erickson difference.</p>
+    <header id="mainHeader">
+        <a href="erickson_flooring.html" class="logo">Erickson <span>Flooring</span></a>
+        <nav>
+            <ul>
+                <li><a href="erickson_flooring.html">Home</a></li>
+                <li><a href="erickson_story.html">Our Story</a></li>
+                <li><a href="craftsmanship.html">Craftsmanship</a></li>
+                <li><a href="portfolio.html" class="active">Portfolio</a></li>
+                <li><a href="contact.html" class="nav-cta">Get Quote</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+            </ul>
+        </nav>
+        <button class="mobile-menu-btn" id="menuBtn" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
+
+    <div class="mobile-nav" id="mobileNav">
+        <a href="erickson_flooring.html">Home</a>
+        <a href="erickson_story.html">Our Story</a>
+        <a href="craftsmanship.html">Craftsmanship</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="contact.html">Get Quote</a>
+        <a href="faq.html">FAQ</a>
     </div>
-</div>
 
-<section class="transformation-section">
-    <div class="container">
-        <div class="comparison-grid">
-            <!-- Project 1 -->
-            <div>
-                <div class="ba-slider" id="slider1">
-                    <img src="https://images.unsplash.com/photo-1584622050111-993a426fbf0a?q=80&w=2070&auto=format&fit=crop" class="after-img" alt="After">
-                    <img src="https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?q=80&w=2070&auto=format&fit=crop" class="before-img" alt="Before">
-                    <div class="handle"><i class="fas fa-arrows-alt-h"></i></div>
-                </div>
-                <div class="case-study">
-                    <h3>The Hyde Park Upgrade</h3>
-                    <span class="meta">Chicago, IL | White Oak Style SPC</span>
-                    <p>Replaced damaged hardwood with 9" wide-plank Luxury Vinyl. 100% waterproof, scratch-resistant, and indistinguishable from the original.</p>
+    <!-- ============================================================
+         HERO
+    ============================================================ -->
+    <section class="portfolio-hero">
+        <div class="portfolio-hero-bg"></div>
+        <div class="portfolio-hero-content">
+            <span class="portfolio-hero-label">The Portfolio</span>
+            <h1>Every Floor Tells<br>a <em>Story</em></h1>
+            <div class="hero-line"></div>
+            <p>Five homes. Five transformations. The precision, the detail, and the obsession — all on display.</p>
+            <span class="project-count">5 Featured Projects</span>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         FILTER BAR
+    ============================================================ -->
+    <div class="filter-bar">
+        <div class="filter-bar-inner">
+            <button class="filter-btn active" data-filter="all">All Projects</button>
+            <button class="filter-btn" data-filter="full-home">Full Home</button>
+            <button class="filter-btn" data-filter="kitchen">Kitchen</button>
+            <button class="filter-btn" data-filter="staircase">Staircase</button>
+            <button class="filter-btn" data-filter="pattern">Pattern Work</button>
+            <button class="filter-btn" data-filter="commercial">Commercial</button>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         BEFORE / AFTER SECTION
+    ============================================================ -->
+    <section class="ba-section">
+        <div class="ba-header reveal">
+            <span class="label">See the Difference</span>
+            <h2>Before & After</h2>
+            <p>Drag the slider to reveal the transformation.</p>
+        </div>
+        <div class="ba-grid">
+            <div class="ba-slider reveal" data-slider>
+                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?q=80&w=2232&auto=format&fit=crop" alt="Before" class="ba-before">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" alt="After" class="ba-after">
+                <div class="ba-handle"></div>
+                <span class="ba-label ba-label-before">Before</span>
+                <span class="ba-label ba-label-after">After</span>
+            </div>
+            <div class="ba-slider reveal" data-slider>
+                <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2076&auto=format&fit=crop" alt="Before" class="ba-before">
+                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop" alt="After" class="ba-after">
+                <div class="ba-handle"></div>
+                <span class="ba-label ba-label-before">Before</span>
+                <span class="ba-label ba-label-after">After</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         CASE STUDIES
+    ============================================================ -->
+    <section class="cases-section">
+        <div class="cases-header reveal">
+            <span class="label">Featured Work</span>
+            <h2>Project Case Studies</h2>
+        </div>
+
+        <!-- PROJECT 1 -->
+        <div class="case-card reveal" data-category="full-home">
+            <div class="case-hero">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" alt="Bayshore Modern" class="lightbox-trigger">
+                <span class="case-badge">Full Home</span>
+                <div class="case-thumbs">
+                    <img src="https://images.unsplash.com/photo-1584622050111-993a426fbf0a?q=80&w=2070&auto=format&fit=crop" alt="Detail 1" class="lightbox-trigger">
+                    <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2000&auto=format&fit=crop" alt="Detail 2" class="lightbox-trigger">
+                    <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4f9d?q=80&w=2070&auto=format&fit=crop" alt="Detail 3" class="lightbox-trigger">
                 </div>
             </div>
-
-            <!-- Project 2 -->
-            <div>
-                <div class="ba-slider" id="slider2">
-                    <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?q=80&w=2070&auto=format&fit=crop" class="after-img" alt="After">
-                    <img src="https://images.unsplash.com/photo-1581858726768-758a030e9048?q=80&w=2080&auto=format&fit=crop" class="before-img" alt="Before">
-                    <div class="handle"><i class="fas fa-arrows-alt-h"></i></div>
+            <div class="case-details">
+                <div class="case-number">01</div>
+                <span class="case-location">Bayshore Boulevard, Tampa</span>
+                <h3>The Bayshore Modern</h3>
+                <p class="case-desc">A complete 2,800 sq ft transformation. The homeowners wanted wide-plank LVP that could handle three kids, two dogs, and year-round Florida humidity — while looking indistinguishable from real European oak. We delivered.</p>
+                <div class="case-specs">
+                    <div class="spec-item"><span class="spec-label">Material</span><span class="spec-value">Wide-Plank SPC (7")</span></div>
+                    <div class="spec-item"><span class="spec-label">Area</span><span class="spec-value">2,800 Sq Ft</span></div>
+                    <div class="spec-item"><span class="spec-label">Duration</span><span class="spec-value">6 Days</span></div>
+                    <div class="spec-item"><span class="spec-label">Pattern</span><span class="spec-value">Straight Lay</span></div>
                 </div>
-                <div class="case-study">
-                    <h3>Davis Island Modern</h3>
-                    <span class="meta">Tampa, FL | Walnut Style Rigid Core</span>
-                    <p>Replaced water-damaged carpet with 7" wide-plank waterproof vinyl. Acoustic backing for sound dampening.</p>
+                <div class="case-testimonial">
+                    <p>"Our friends can't believe it's vinyl. They keep touching it and asking where we got our hardwood."</p>
+                    <cite>— Homeowner, Bayshore Blvd</cite>
                 </div>
             </div>
         </div>
-    </div>
-</section>
 
-<section class="gallery-section">
-    <div class="container">
-        <div class="filter-bar">
-            <button class="filter-btn active">All Projects</button>
-            <button class="filter-btn">Wood Look (LVP)</button>
-            <button class="filter-btn">Stone Look (LVT)</button>
-            <button class="filter-btn">Commercial</button>
-        </div>
-        
-        <div class="project-grid">
-            <div class="project-item">
-                <img src="https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=2069&auto=format&fit=crop" alt="Project">
-                <div class="project-info">
-                    <h4>Bayshore High-Rise</h4>
-                    <span>Herringbone LVP</span>
+        <!-- PROJECT 2 -->
+        <div class="case-card reveal" data-category="pattern">
+            <div class="case-hero">
+                <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4f9d?q=80&w=2070&auto=format&fit=crop" alt="Herringbone Project" class="lightbox-trigger">
+                <span class="case-badge">Pattern Work</span>
+                <div class="case-thumbs">
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop" alt="Detail 1" class="lightbox-trigger">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" alt="Detail 2" class="lightbox-trigger">
+                    <img src="https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?q=80&w=2069&auto=format&fit=crop" alt="Detail 3" class="lightbox-trigger">
                 </div>
             </div>
-            <div class="project-item">
-                <img src="https://images.unsplash.com/photo-1615529182904-14819c35db37?q=80&w=2080&auto=format&fit=crop" alt="Project">
-                <div class="project-info">
-                    <h4>Seminole Heights Bungalow</h4>
-                    <span>Heart Pine Look Vinyl</span>
+            <div class="case-details">
+                <div class="case-number">02</div>
+                <span class="case-location">Hyde Park, Tampa</span>
+                <h3>The Hyde Park Herringbone</h3>
+                <p class="case-desc">A 1920s bungalow deserved a statement floor. The homeowner chose a warm walnut-tone LVP in a classic herringbone pattern. Every single plank was dry-laid, verified for alignment, then installed with surgical precision across the entire living and dining area.</p>
+                <div class="case-specs">
+                    <div class="spec-item"><span class="spec-label">Material</span><span class="spec-value">Walnut-Tone SPC</span></div>
+                    <div class="spec-item"><span class="spec-label">Area</span><span class="spec-value">1,200 Sq Ft</span></div>
+                    <div class="spec-item"><span class="spec-label">Duration</span><span class="spec-value">5 Days</span></div>
+                    <div class="spec-item"><span class="spec-label">Pattern</span><span class="spec-value">Herringbone</span></div>
                 </div>
-            </div>
-            <div class="project-item">
-                <img src="https://images.unsplash.com/photo-1615873968403-89e068629265?q=80&w=1932&auto=format&fit=crop" alt="Project">
-                <div class="project-info">
-                    <h4>St. Pete Beach Condo</h4>
-                    <span>Stone Core LVT (Slate)</span>
-                </div>
-            </div>
-            <div class="project-item">
-                <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4f9d?q=80&w=2070&auto=format&fit=crop" alt="Project">
-                <div class="project-info">
-                    <h4>Custom Staircase</h4>
-                    <span>Vinyl Tread Overlay</span>
-                </div>
-            </div>
-            <div class="project-item">
-                <img src="https://images.unsplash.com/photo-1617806118233-18e1de247200?q=80&w=1932&auto=format&fit=crop" alt="Project">
-                <div class="project-info">
-                    <h4>Master Bath Spa</h4>
-                    <span>Waterproof Marble Look LVT</span>
-                </div>
-            </div>
-            <div class="project-item">
-                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" alt="Project">
-                <div class="project-info">
-                    <h4>Commercial Lobby</h4>
-                    <span>Terrazzo Style Vinyl</span>
+                <div class="case-testimonial">
+                    <p>"Everyone who walks in comments on the floor first. It completely changed the character of our home."</p>
+                    <cite>— Homeowner, Hyde Park</cite>
                 </div>
             </div>
         </div>
+
+        <!-- PROJECT 3 -->
+        <div class="case-card reveal" data-category="staircase">
+            <div class="case-hero">
+                <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2000&auto=format&fit=crop" alt="Staircase Project" class="lightbox-trigger">
+                <span class="case-badge">Staircase</span>
+                <div class="case-thumbs">
+                    <img src="https://images.unsplash.com/photo-1617806118233-18e1de247200?q=80&w=1932&auto=format&fit=crop" alt="Detail 1" class="lightbox-trigger">
+                    <img src="https://images.unsplash.com/photo-1584622050111-993a426fbf0a?q=80&w=2070&auto=format&fit=crop" alt="Detail 2" class="lightbox-trigger">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" alt="Detail 3" class="lightbox-trigger">
+                </div>
+            </div>
+            <div class="case-details">
+                <div class="case-number">03</div>
+                <span class="case-location">South Tampa</span>
+                <h3>The Grand Staircase</h3>
+                <p class="case-desc">A 16-step staircase with a 90-degree landing — the kind of project that separates professionals from craftsmen. Every tread was individually templated, every riser custom-wrapped, and every bullnose cut from matching plank material for a seamless monolithic look.</p>
+                <div class="case-specs">
+                    <div class="spec-item"><span class="spec-label">Material</span><span class="spec-value">Oak-Tone Rigid Core</span></div>
+                    <div class="spec-item"><span class="spec-label">Steps</span><span class="spec-value">16 + Landing</span></div>
+                    <div class="spec-item"><span class="spec-label">Duration</span><span class="spec-value">3 Days</span></div>
+                    <div class="spec-item"><span class="spec-label">Technique</span><span class="spec-value">Custom Wrap</span></div>
+                </div>
+                <div class="case-testimonial">
+                    <p>"The staircase looks like it was carved from a single piece of wood. Absolutely flawless."</p>
+                    <cite>— Homeowner, South Tampa</cite>
+                </div>
+            </div>
+        </div>
+
+        <!-- PROJECT 4 -->
+        <div class="case-card reveal" data-category="kitchen">
+            <div class="case-hero">
+                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop" alt="Kitchen Project" class="lightbox-trigger">
+                <span class="case-badge">Kitchen</span>
+                <div class="case-thumbs">
+                    <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2000&auto=format&fit=crop" alt="Detail 1" class="lightbox-trigger">
+                    <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4f9d?q=80&w=2070&auto=format&fit=crop" alt="Detail 2" class="lightbox-trigger">
+                    <img src="https://images.unsplash.com/photo-1617806118233-18e1de247200?q=80&w=1932&auto=format&fit=crop" alt="Detail 3" class="lightbox-trigger">
+                </div>
+            </div>
+            <div class="case-details">
+                <div class="case-number">04</div>
+                <span class="case-location">Davis Islands, Tampa</span>
+                <h3>The Chef's Kitchen</h3>
+                <p class="case-desc">A high-end kitchen renovation where waterproof performance was non-negotiable. The homeowner — a serious cook — needed a floor that could handle daily spills, dropped pans, and heavy foot traffic while maintaining the warmth of natural wood.</p>
+                <div class="case-specs">
+                    <div class="spec-item"><span class="spec-label">Material</span><span class="spec-value">Stone-Look SPC</span></div>
+                    <div class="spec-item"><span class="spec-label">Area</span><span class="spec-value">450 Sq Ft</span></div>
+                    <div class="spec-item"><span class="spec-label">Duration</span><span class="spec-value">2 Days</span></div>
+                    <div class="spec-item"><span class="spec-label">Features</span><span class="spec-value">100% Waterproof</span></div>
+                </div>
+                <div class="case-testimonial">
+                    <p>"I cook every single day and this floor still looks brand new after a year. Best decision we made."</p>
+                    <cite>— Homeowner, Davis Islands</cite>
+                </div>
+            </div>
+        </div>
+
+        <!-- PROJECT 5 -->
+        <div class="case-card reveal" data-category="commercial">
+            <div class="case-hero">
+                <img src="https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?q=80&w=2069&auto=format&fit=crop" alt="Commercial Project" class="lightbox-trigger">
+                <span class="case-badge">Commercial</span>
+                <div class="case-thumbs">
+                    <img src="https://images.unsplash.com/photo-1584622050111-993a426fbf0a?q=80&w=2070&auto=format&fit=crop" alt="Detail 1" class="lightbox-trigger">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" alt="Detail 2" class="lightbox-trigger">
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop" alt="Detail 3" class="lightbox-trigger">
+                </div>
+            </div>
+            <div class="case-details">
+                <div class="case-number">05</div>
+                <span class="case-location">Channelside, Tampa</span>
+                <h3>The Boutique Studio</h3>
+                <p class="case-desc">A fitness boutique studio needed flooring that could survive daily abuse — heavy equipment, constant foot traffic, and frequent cleaning — while maintaining a premium aesthetic that matched their brand. We installed commercial-grade rigid-core LVP with enhanced wear layers.</p>
+                <div class="case-specs">
+                    <div class="spec-item"><span class="spec-label">Material</span><span class="spec-value">Commercial SPC (28mil)</span></div>
+                    <div class="spec-item"><span class="spec-label">Area</span><span class="spec-value">3,200 Sq Ft</span></div>
+                    <div class="spec-item"><span class="spec-label">Duration</span><span class="spec-value">4 Days</span></div>
+                    <div class="spec-item"><span class="spec-label">Wear Layer</span><span class="spec-value">28mil Commercial</span></div>
+                </div>
+                <div class="case-testimonial">
+                    <p>"We put this floor through hell every day. It still looks like we just had it installed. Incredible quality."</p>
+                    <cite>— Studio Owner, Channelside</cite>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         LIGHTBOX
+    ============================================================ -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose"><i class="fas fa-times"></i></button>
+        <img src="" alt="Full size view" id="lightboxImg">
     </div>
-</section>
 
-<footer>
-    <p>&copy; 2026 Erickson Flooring Inc. | Built for Perfection.</p>
-</footer>
+    <!-- ============================================================
+         CTA
+    ============================================================ -->
+    <section class="portfolio-cta reveal">
+        <h2>Your Home Could Be<br>Our Next Masterpiece</h2>
+        <p>Ready to see what obsessive precision looks like in your space? Let's talk.</p>
+        <a href="contact.html" class="btn-gold">Start Your Project</a>
+    </section>
 
-<script>
-    // Logic for Before/After Sliders
-    const sliders = document.querySelectorAll('.ba-slider');
-    
-    sliders.forEach(slider => {
-        slider.addEventListener('mousemove', function(e) {
-            let rect = slider.getBoundingClientRect();
-            let x = e.clientX - rect.left;
-            let percent = (x / rect.width) * 100;
-            
-            // Clamp percentage
-            if (percent < 0) percent = 0;
-            if (percent > 100) percent = 100;
-            
-            slider.querySelector('.before-img').style.width = percent + "%";
-            slider.querySelector('.handle').style.left = percent + "%";
+    <footer>
+        <p>&copy; 2026 Erickson Flooring Inc. | Designed by <a href="https://dilankochhar.com">Dilan Kochhar</a></p>
+    </footer>
+
+    <script>
+        // ===== MOBILE MENU =====
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('active');
+            mobileNav.classList.toggle('open');
+            document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
         });
 
-        // Touch support for mobile
-        slider.addEventListener('touchmove', function(e) {
-            let rect = slider.getBoundingClientRect();
-            let touch = e.touches[0];
-            let x = touch.clientX - rect.left;
-            let percent = (x / rect.width) * 100;
-            
-            if (percent < 0) percent = 0;
-            if (percent > 100) percent = 100;
-            
-            slider.querySelector('.before-img').style.width = percent + "%";
-            slider.querySelector('.handle').style.left = percent + "%";
+        // ===== STICKY HEADER =====
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 80) {
+                header.classList.add('scrolled');
+                document.body.classList.add('scrolled-past-bar');
+            } else {
+                header.classList.remove('scrolled');
+                document.body.classList.remove('scrolled-past-bar');
+            }
         });
-    });
-</script>
+
+        // ===== SCROLL REVEAL =====
+        const revealEls = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+        revealEls.forEach(el => observer.observe(el));
+
+        // ===== FILTER =====
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const caseCards = document.querySelectorAll('.case-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.dataset.filter;
+
+                caseCards.forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.classList.remove('hidden');
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(30px)';
+                        setTimeout(() => {
+                            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 50);
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            });
+        });
+
+        // ===== BEFORE/AFTER SLIDERS =====
+        document.querySelectorAll('[data-slider]').forEach(slider => {
+            const handle = slider.querySelector('.ba-handle');
+            const afterImg = slider.querySelector('.ba-after');
+            let isDragging = false;
+
+            function updateSlider(x) {
+                const rect = slider.getBoundingClientRect();
+                let pos = ((x - rect.left) / rect.width) * 100;
+                pos = Math.max(5, Math.min(95, pos));
+                handle.style.left = pos + '%';
+                afterImg.style.clipPath = `inset(0 0 0 ${pos}%)`;
+            }
+
+            slider.addEventListener('mousedown', (e) => { isDragging = true; updateSlider(e.clientX); });
+            window.addEventListener('mousemove', (e) => { if (isDragging) updateSlider(e.clientX); });
+            window.addEventListener('mouseup', () => { isDragging = false; });
+
+            slider.addEventListener('touchstart', (e) => { isDragging = true; updateSlider(e.touches[0].clientX); }, { passive: true });
+            window.addEventListener('touchmove', (e) => { if (isDragging) updateSlider(e.touches[0].clientX); }, { passive: true });
+            window.addEventListener('touchend', () => { isDragging = false; });
+        });
+
+        // ===== LIGHTBOX =====
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxClose = document.getElementById('lightboxClose');
+
+        document.querySelectorAll('.lightbox-trigger').forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightbox.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+
+        function closeLightbox() {
+            lightbox.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+    </script>
 
 </body>
 </html>
