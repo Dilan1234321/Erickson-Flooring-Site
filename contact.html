@@ -453,22 +453,25 @@ footer a { color: var(--accent); font-weight: 700; }
         </div>
 
         <div class="form-box reveal-right">
-            <form id="quoteForm">
+            <form id="quoteForm" action="https://formsubmit.co/ajax/ericksonflooring2025@gmail.com" method="POST">
+                <input type="hidden" name="_subject" value="New Quote Request - Erickson Flooring">
+                <input type="hidden" name="_template" value="table">
+                <input type="text" name="_honey" style="display:none">
                 <div class="form-grid">
-                    <input type="text" placeholder="First Name" required>
-                    <input type="text" placeholder="Last Name" required>
+                    <input type="text" name="First Name" placeholder="First Name" required>
+                    <input type="text" name="Last Name" placeholder="Last Name" required>
                 </div>
-                <input type="email" placeholder="Email Address" required>
-                <input type="tel" placeholder="Phone Number">
-                <input type="text" placeholder="Project Zip Code">
-                <select>
-                    <option>Type of Project...</option>
+                <input type="email" name="Email" placeholder="Email Address" required>
+                <input type="tel" name="Phone" placeholder="Phone Number">
+                <input type="text" name="Zip Code" placeholder="Project Zip Code">
+                <select name="Project Type">
+                    <option value="">Type of Project...</option>
                     <option>Full Home Vinyl Install</option>
                     <option>Single Room / Kitchen</option>
                     <option>Bathroom / Kitchen</option>
                     <option>Commercial Space</option>
                 </select>
-                <textarea rows="4" placeholder="Tell us about your space (Sq Ft, current flooring, timeline, etc.)"></textarea>
+                <textarea rows="4" name="Project Details" placeholder="Tell us about your space (Sq Ft, current flooring, timeline, etc.)"></textarea>
                 <button type="submit" class="btn">Claim Your Personal Quote</button>
             </form>
 
@@ -503,7 +506,26 @@ footer a { color: var(--accent); font-weight: 700; }
 
         quoteForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            formSuccess.classList.add('show');
+            const submitBtn = quoteForm.querySelector('button[type="submit"]');
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+
+            fetch(quoteForm.action, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify(Object.fromEntries(new FormData(quoteForm)))
+            })
+            .then(response => response.json())
+            .then(data => {
+                formSuccess.classList.add('show');
+                submitBtn.textContent = 'Claim Your Personal Quote';
+                submitBtn.disabled = false;
+            })
+            .catch(error => {
+                alert('Something went wrong. Please try again or call us directly.');
+                submitBtn.textContent = 'Claim Your Personal Quote';
+                submitBtn.disabled = false;
+            });
         });
 
         resetBtn.addEventListener('click', () => {
